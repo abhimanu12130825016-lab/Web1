@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LocalLoop — Concept Prototype</title>
+<title>NeonNest Studio — Bright digital services for bold businesses</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
@@ -262,6 +262,37 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 .reply-box{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
 .reply-box textarea{width:100%;min-height:60px;padding:10px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:13px;resize:vertical;}
 
+/* bright 3D motion layer */
+:root{
+  --ink:#17243d;--ink-soft:#516079;--ink-faint:#8793a8;--paper:#f6f7fb;--surface:rgba(255,255,255,.88);--line:#dce3ef;
+  --gold:#ffcb3d;--gold-deep:#f06b4f;--gold-tint:#fff1b8;--star:#ff9b35;--cyan:#58d9e6;--pink:#ff6f91;--violet:#8d7cff;
+  --shadow-hero:0 28px 55px rgba(52,65,116,.24);
+}
+body{background:radial-gradient(circle at 8% 12%,rgba(88,217,230,.23),transparent 25%),radial-gradient(circle at 92% 6%,rgba(255,111,145,.18),transparent 27%),linear-gradient(135deg,#f8f8ff 0%,#eef8f7 48%,#fff7eb 100%);}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;opacity:.28;background-image:linear-gradient(rgba(23,36,61,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(23,36,61,.045) 1px,transparent 1px);background-size:34px 34px;mask-image:linear-gradient(to bottom,#000,transparent 72%);z-index:-1;}
+h1,h2{color:var(--ink);text-shadow:0 4px 0 rgba(255,255,255,.8);}
+.topbar{background:rgba(248,249,253,.78);border-bottom:1px solid rgba(23,36,61,.13);box-shadow:0 8px 24px rgba(48,65,112,.08);}
+.topbar-inner{padding-top:16px;padding-bottom:16px;}.brand{letter-spacing:.03em;transform:translateZ(0);}.brand .icon{color:var(--pink);filter:drop-shadow(2px 3px 0 var(--gold));}
+.nav-link{border-radius:999px;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;}.nav-link.active,.nav-link:hover{background:var(--gold-tint);box-shadow:0 5px 0 rgba(240,107,79,.16);transform:translateY(-2px);}
+.btn{box-shadow:0 5px 0 rgba(23,36,61,.14);transition:transform .2s ease,box-shadow .2s ease,background .2s ease,color .2s ease;}.btn:hover{transform:translateY(-3px);box-shadow:0 9px 0 rgba(23,36,61,.13);}.btn:active{transform:translateY(1px);box-shadow:0 2px 0 rgba(23,36,61,.13);}
+.btn-solid{background:linear-gradient(135deg,var(--gold),#ffdf68);color:var(--ink);border-color:#f7bd35;}.btn-solid:hover{background:linear-gradient(135deg,#ffbd43,var(--gold-deep));color:#fff;}.btn-outline{border-color:var(--ink);background:rgba(255,255,255,.45);}
+.hero{perspective:1100px;}.hero-copy{animation:rise-in .8s cubic-bezier(.2,.8,.2,1) both;}.hero-visual{perspective:900px;min-height:310px;}.placard-stack{transform-style:preserve-3d;animation:hero-float 6s ease-in-out infinite;}
+.mini-placard{border:1px solid rgba(23,36,61,.18);border-radius:18px;background:rgba(255,255,255,.82);box-shadow:0 20px 25px rgba(40,57,112,.14),inset 0 1px 0 #fff;backdrop-filter:blur(10px);transform-style:preserve-3d;}.mp-1{border-top:6px solid var(--cyan);}.mp-2{border-top:6px solid var(--pink);}.mp-3{border-top:6px solid var(--gold);}
+.audience-card,.pillar-card,.price-card,.biz-card,.stat-card,.chart-card,.recent-reviews-card,.builder-section,.new-post-form,.new-campaign-form,.campaign-card,.dash-review{border:1px solid rgba(23,36,61,.13);border-radius:18px;box-shadow:0 12px 24px rgba(48,65,112,.08),inset 0 1px 0 #fff;transform-style:preserve-3d;transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease;}
+.audience-card:hover,.pillar-card:hover,.price-card:hover,.biz-card:hover,.stat-card:hover,.campaign-card:hover{transform:translateY(-8px) rotateX(2deg) rotateY(-2deg);box-shadow:0 24px 32px rgba(48,65,112,.16),inset 0 1px 0 #fff;border-color:rgba(88,217,230,.75);}
+.audience-card--dark,.price-card--featured{background:linear-gradient(145deg,#202c50,#343b72);border-color:#202c50;box-shadow:0 20px 32px rgba(32,44,80,.3);}.audience-card--dark:hover,.price-card--featured:hover{border-color:var(--pink);}
+.audience-icon{border-radius:14px;background:linear-gradient(145deg,var(--gold-tint),#fff);box-shadow:inset 0 2px 0 #fff,0 6px 10px rgba(240,107,79,.14);}.pillar-card:nth-child(2) .icon{color:var(--cyan);}.pillar-card:nth-child(3) .icon{color:var(--pink);}.pillar-card:nth-child(4) .icon{color:var(--violet);}
+.step-ghost{color:var(--pink);text-shadow:4px 5px 0 rgba(88,217,230,.3);}.testimonial{border-left-color:var(--pink);}.price-card--featured .btn-solid{background:var(--cyan);border-color:var(--cyan);}
+.explore-header{padding-top:72px;}.search-box input{border:1px solid rgba(23,36,61,.3);box-shadow:0 8px 16px rgba(48,65,112,.08);}.chip{transition:transform .2s ease,background .2s ease,box-shadow .2s ease;}.chip:hover{transform:translateY(-2px);box-shadow:0 5px 0 rgba(23,36,61,.1);}.chip.active{background:var(--ink);box-shadow:0 5px 0 var(--pink);}
+.biz-avatar{background:linear-gradient(145deg,var(--violet),var(--pink));box-shadow:4px 5px 0 rgba(23,36,61,.12);}.biz-card{animation:rise-in .55s both;}.biz-card:nth-child(2n){animation-delay:.08s}.biz-card:nth-child(3n){animation-delay:.16s}
+.dash-shell{perspective:1200px;}.dash-sidebar{background:linear-gradient(160deg,#1b2949,#343b72);box-shadow:12px 0 24px rgba(32,44,80,.14);}.dash-main{background:rgba(246,247,251,.7);}.stat-value{color:var(--ink);text-shadow:2px 3px 0 rgba(88,217,230,.3);}.bar{fill:var(--pink);filter:drop-shadow(4px 5px 0 rgba(240,107,79,.15));}
+.builder-preview{box-shadow:0 22px 36px rgba(48,65,112,.16);transform:rotateX(2deg);}.site-preview-hero{background:linear-gradient(135deg,#fff1b8,#d7f7f4);}.modal-backdrop{background:rgba(23,36,61,.62);backdrop-filter:blur(8px);}.modal{border:1px solid rgba(255,255,255,.7);border-radius:22px;box-shadow:0 30px 70px rgba(15,25,53,.3);animation:modal-in .35s cubic-bezier(.2,.8,.2,1);}
+.portal-note{color:#cbd4ef;font-size:13px;line-height:1.55;padding:18px 10px 0;}.application-form{max-width:860px;background:rgba(255,255,255,.82);border:1px solid rgba(23,36,61,.13);border-radius:22px;padding:28px;box-shadow:0 22px 38px rgba(48,65,112,.13),inset 0 1px 0 #fff;}.application-intro{border-bottom:1px solid var(--line);margin-bottom:22px;padding-bottom:18px;}.application-kicker{color:var(--gold-deep);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;}.application-intro h3{font-size:24px;margin:8px 0 5px;}.application-intro p{font-size:14px;margin:0;}.application-form label{display:block;margin-bottom:16px;}.application-form label span{display:block;color:var(--ink-soft);font-size:12px;font-weight:700;margin-bottom:6px;}.application-form input,.application-form select,.application-form textarea{width:100%;border:1px solid var(--line);border-radius:10px;background:#fff;padding:12px 13px;outline:none;transition:border-color .2s ease,box-shadow .2s ease;}.application-form textarea{min-height:120px;resize:vertical;}.application-form input:focus,.application-form select:focus,.application-form textarea:focus{border-color:var(--cyan);box-shadow:0 0 0 4px rgba(88,217,230,.18);}.application-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;}.application-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-top:8px;color:var(--ink-faint);font-size:12px;}.application-success{margin-top:18px;padding:14px 16px;border-radius:12px;background:#d9fff3;color:#126653;border:1px solid #72e6c5;animation:rise-in .4s ease both;}.application-success strong{color:#04705a;} 
+@keyframes rise-in{from{opacity:0;transform:translateY(24px) rotateX(6deg)}to{opacity:1;transform:translateY(0) rotateX(0)}}
+@keyframes hero-float{0%,100%{transform:rotateY(-5deg) rotateX(3deg) translateY(0)}50%{transform:rotateY(5deg) rotateX(-2deg) translateY(-12px)}}
+@keyframes modal-in{from{opacity:0;transform:translateY(18px) scale(.94) rotateX(8deg)}to{opacity:1;transform:translateY(0) scale(1) rotateX(0)}}
+@media (max-width:720px){.hero-visual{min-height:260px}.placard-stack{transform:scale(.85);transform-origin:top center}.section{padding:58px 0}.explore-header{padding-top:48px}.audience-card,.pillar-card,.price-card,.biz-card{border-radius:15px;}.application-form{padding:20px 16px}.application-grid{grid-template-columns:1fr}.application-footer{align-items:flex-start;flex-direction:column}.application-footer .btn{width:100%;justify-content:center;}}
+
 @media (max-width:960px){
   .pillar-grid{grid-template-columns:repeat(2,1fr);}
   .step-list{grid-template-columns:repeat(2,1fr);}
@@ -304,15 +335,15 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 
 <header class="topbar">
   <div class="topbar-inner">
-    <button class="brand" data-nav="home"><svg class="icon"><use href="#icon-pin"/></svg>LocalLoop</button>
+    <button class="brand" data-nav="home"><svg class="icon"><use href="#icon-pin"/></svg>NeonNest</button>
     <nav class="main-nav">
       <button class="nav-link" data-nav="home">Home</button>
-      <button class="nav-link" data-nav="explore">Explore</button>
-      <button class="nav-link" data-nav="dashboard">Business Dashboard</button>
+      <button class="nav-link" data-nav="explore">Our work</button>
+      <button class="nav-link" data-nav="dashboard">Client portal</button>
     </nav>
     <div class="topbar-actions">
-      <button class="btn btn-ghost" data-nav="dashboard">Log in</button>
-      <button class="btn btn-solid" data-nav="dashboard">Get started</button>
+      <button class="btn btn-ghost" data-nav="dashboard">Client portal</button>
+      <button class="btn btn-solid" data-nav="dashboard">Apply now</button>
     </div>
   </div>
 </header>
@@ -321,18 +352,18 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
 <section class="view" data-view="home">
   <div class="wrap hero">
     <div class="hero-copy">
-      <h1>Get found.<br>Get reviewed.<br>Get chosen.</h1>
-      <p class="lede">LocalLoop is where customers discover and review local businesses — and where owners build their website, plan content, run ads, and manage their reputation, all from one login.</p>
+      <h1>Make your brand<br>impossible to<br>scroll past.</h1>
+      <p class="lede">NeonNest turns growing businesses into unforgettable brands with review writing, websites, social templates, posters, and digital campaigns that look as good as they perform.</p>
       <div class="hero-actions">
-        <button class="btn btn-solid btn-lg" data-nav="explore">Explore businesses</button>
-        <button class="btn btn-outline btn-lg" data-nav="dashboard">Go to your dashboard</button>
+        <button class="btn btn-solid btn-lg" data-nav="explore">See our work</button>
+        <button class="btn btn-outline btn-lg" data-nav="dashboard">Plan my project</button>
       </div>
     </div>
     <div class="hero-visual">
       <div class="placard-stack">
-        <div class="mini-placard mp-1"><span class="mp-cat">Bakery</span><strong>Lucia's Bakery</strong><span class="mp-stars">★★★★★ 4.9</span></div>
-        <div class="mini-placard mp-2"><span class="mp-cat">Home Services</span><strong>Coastline Plumbing</strong><span class="mp-stars">★★★★★ 4.9</span></div>
-        <div class="mini-placard mp-3"><span class="mp-cat">Restaurant</span><strong>Maple &amp; Vine</strong><span class="mp-stars">★★★★★ 4.8</span></div>
+        <div class="mini-placard mp-1"><span class="mp-cat">Brand launch</span><strong>GlowHaus Beauty</strong><span class="mp-stars">✦ neon identity</span></div>
+        <div class="mini-placard mp-2"><span class="mp-cat">Campaign kit</span><strong>Northstar Fitness</strong><span class="mp-stars">✦ poster system</span></div>
+        <div class="mini-placard mp-3"><span class="mp-cat">Web experience</span><strong>Bloom &amp; Co.</strong><span class="mp-stars">✦ built to convert</span></div>
       </div>
     </div>
   </div>
@@ -341,23 +372,23 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="audience">
       <div class="audience-card">
         <div class="audience-icon"><svg class="icon"><use href="#icon-user"/></svg></div>
-        <h3>For customers</h3>
+        <h3>For ambitious founders</h3>
         <ul>
-          <li>Discover businesses worth your time</li>
-          <li>Read real, verified reviews</li>
-          <li>Compare ratings at a glance</li>
+          <li>Turn your idea into a sharp visual identity</li>
+          <li>Show up with confidence everywhere</li>
+          <li>Give customers a reason to remember you</li>
         </ul>
-        <button class="text-link" data-nav="explore">Start exploring</button>
+        <button class="text-link" data-nav="explore">View the portfolio</button>
       </div>
       <div class="audience-card audience-card--dark">
         <div class="audience-icon"><svg class="icon"><use href="#icon-website"/></svg></div>
-        <h3>For business owners</h3>
+        <h3>For brands ready to glow</h3>
         <ul>
-          <li>Build and manage your website</li>
-          <li>Plan content and launch ad campaigns</li>
-          <li>Track and reply to every review</li>
+          <li>Get polished review and response writing</li>
+          <li>Launch websites, templates, and posters</li>
+          <li>Keep every touchpoint unmistakably yours</li>
         </ul>
-        <button class="text-link text-link--light" data-nav="dashboard">Open the dashboard</button>
+        <button class="text-link text-link--light" data-nav="dashboard">Open the client portal</button>
       </div>
     </div>
   </div>
@@ -365,14 +396,14 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="section">
     <div class="wrap">
       <div class="section-head">
-        <h2>Everything under one roof</h2>
-        <p class="section-sub">Four tools, one login — no more juggling agencies and apps.</p>
+        <h2>One studio. Every touchpoint.</h2>
+        <p class="section-sub">From first impression to five-star follow-up, we make your business look ready for its next big move.</p>
       </div>
       <div class="pillar-grid">
-        <div class="pillar-card"><svg class="icon"><use href="#icon-website"/></svg><h3>Website Builder</h3><p>Launch a clean, mobile-ready site in an afternoon. No code needed.</p></div>
-        <div class="pillar-card"><svg class="icon"><use href="#icon-content"/></svg><h3>Content Studio</h3><p>Plan posts across your site, social, and email from one calendar.</p></div>
-        <div class="pillar-card"><svg class="icon"><use href="#icon-ads"/></svg><h3>Ad Manager</h3><p>Launch and track campaigns without needing a marketing team.</p></div>
-        <div class="pillar-card"><svg class="icon"><use href="#icon-reviews"/></svg><h3>Reputation &amp; Reviews</h3><p>See every review in one inbox and reply straight from LocalLoop.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-website"/></svg><h3>Websites that work</h3><p>Responsive, high-converting websites with a distinct point of view.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-content"/></svg><h3>Templates &amp; social kits</h3><p>Reusable post templates that keep every launch bright, consistent, and fast.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-ads"/></svg><h3>Posters &amp; campaigns</h3><p>Eye-catching posters and campaign assets built to stop the scroll.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-reviews"/></svg><h3>Review writing</h3><p>Thoughtful review responses and reputation copy that sound like your brand.</p></div>
       </div>
     </div>
   </div>
@@ -381,10 +412,10 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
     <div class="wrap">
       <div class="section-head"><h2>How it works</h2></div>
       <ol class="step-list">
-        <li><span class="step-ghost">1</span><h3>Claim your business</h3><p>Set up your profile in minutes.</p></li>
-        <li><span class="step-ghost">2</span><h3>Build your site</h3><p>Pick a layout, add your details, publish.</p></li>
-        <li><span class="step-ghost">3</span><h3>Get discovered</h3><p>Show up when customers search and browse.</p></li>
-        <li><span class="step-ghost">4</span><h3>Grow with data</h3><p>Use reviews, content and ads to keep momentum.</p></li>
+        <li><span class="step-ghost">1</span><h3>Share the spark</h3><p>Tell us your goals, audience, and wildest idea.</p></li>
+        <li><span class="step-ghost">2</span><h3>Shape the direction</h3><p>We turn the brief into a bold visual route.</p></li>
+        <li><span class="step-ghost">3</span><h3>Build the assets</h3><p>Website, templates, posters, and copy come to life.</p></li>
+        <li><span class="step-ghost">4</span><h3>Launch brighter</h3><p>You get a brand people notice and remember.</p></li>
       </ol>
     </div>
   </div>
@@ -392,20 +423,20 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="section" style="padding-top:0;">
     <div class="wrap">
       <div class="testimonials">
-        <div class="testimonial"><p>I used to log into four different tools before lunch. Now it's one dashboard, and I actually have time to cut hair.</p><span>Elena Ruiz, Bright Edge Salon</span></div>
-        <div class="testimonial"><p>Our review replies used to sit for weeks. Now I answer from my phone between jobs.</p><span>Marcus Owusu, Coastline Plumbing</span></div>
-        <div class="testimonial"><p>I built our whole site in an evening without calling a developer.</p><span>Lucia Ferrante, Lucia's Bakery</span></div>
+        <div class="testimonial"><p>NeonNest made our launch feel ten times bigger than our budget. People finally stopped scrolling.</p><span>Maya Chen, GlowHaus Beauty</span></div>
+        <div class="testimonial"><p>The website, poster, and review responses all sound like the same brilliant brand now.</p><span>Jordan Ellis, Northstar Fitness</span></div>
+        <div class="testimonial"><p>We came in with a messy idea and left with a look our customers instantly recognized.</p><span>Rhea Patel, Bloom &amp; Co.</span></div>
       </div>
     </div>
   </div>
 
   <div class="section" style="padding-top:0;">
     <div class="wrap">
-      <div class="section-head"><h2>Simple, transparent plans</h2></div>
+      <div class="section-head"><h2>Pick your level of glow</h2></div>
       <div class="price-grid">
-        <div class="price-card"><h3>Starter</h3><p class="price">$0<span>/mo</span></p><ul><li>Business profile &amp; reviews</li><li>Basic website (1 page)</li><li>Community support</li></ul><button class="btn btn-outline" data-nav="dashboard">Get started</button></div>
-        <div class="price-card price-card--featured"><span class="featured-label">Most popular</span><h3>Growth</h3><p class="price">$29<span>/mo</span></p><ul><li>Full website builder</li><li>Content calendar</li><li>Review inbox &amp; replies</li><li>1 ad campaign</li></ul><button class="btn btn-solid" data-nav="dashboard">Get started</button></div>
-        <div class="price-card"><h3>Pro</h3><p class="price">$79<span>/mo</span></p><ul><li>Everything in Growth</li><li>Unlimited campaigns</li><li>Priority support</li><li>Multi-location</li></ul><button class="btn btn-outline" data-nav="dashboard">Get started</button></div>
+        <div class="price-card"><h3>Starter spark</h3><p class="price">$149<span>/project</span></p><ul><li>Review writing starter pack</li><li>5 branded social templates</li><li>One revision round</li></ul><button class="btn btn-outline" data-nav="dashboard">Start a brief</button></div>
+        <div class="price-card price-card--featured"><span class="featured-label">Most popular</span><h3>Full glow-up</h3><p class="price">$499<span>/project</span></p><ul><li>Custom one-page website</li><li>Social template kit</li><li>Poster design system</li><li>Review response voice</li></ul><button class="btn btn-solid" data-nav="dashboard">Start a brief</button></div>
+        <div class="price-card"><h3>Brand universe</h3><p class="price">Custom<span>/scope</span></p><ul><li>Multi-page website</li><li>Full launch campaign</li><li>Ongoing creative support</li><li>Priority collaboration</li></ul><button class="btn btn-outline" data-nav="dashboard">Talk to us</button></div>
       </div>
     </div>
   </div>
@@ -413,30 +444,30 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <footer class="footer">
     <div class="wrap">
       <div class="footer-inner">
-        <div class="footer-brand">LocalLoop<p>The all-in-one home for local business.</p></div>
+        <div class="footer-brand">NeonNest<p>Bright digital work for businesses with somewhere to go.</p></div>
         <div class="footer-cols">
-          <div><h4>Product</h4><a href="#">Website Builder</a><a href="#">Content Studio</a><a href="#">Ad Manager</a><a href="#">Reviews</a></div>
-          <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a></div>
-          <div><h4>Resources</h4><a href="#">Help Center</a><a href="#">Guides</a><a href="#">Pricing</a></div>
+          <div><h4>Services</h4><a href="#">Websites</a><a href="#">Templates</a><a href="#">Posters</a><a href="#">Review writing</a></div>
+          <div><h4>Studio</h4><a href="#">About</a><a href="#">Our work</a><a href="#">Contact</a></div>
+          <div><h4>Start here</h4><a href="#">Project brief</a><a href="#">Process</a><a href="#">Pricing</a></div>
         </div>
       </div>
-      <p class="footer-note">Concept prototype with sample data, built to show the idea — not a live service.</p>
+      <p class="footer-note">NeonNest Studio · Concept site for a bright, practical creative partner.</p>
     </div>
   </footer>
 </section>
 
 <section class="view" data-view="explore" hidden>
   <div class="explore-header wrap">
-    <h2>Discover local businesses</h2>
-    <p>Real reviews from real customers.</p>
-    <div class="search-box"><svg class="icon"><use href="#icon-search"/></svg><input id="searchInput" placeholder="Search businesses or categories…"></div>
+    <h2>Selected work, made to be remembered</h2>
+    <p>Browse the kind of bright creative systems we can build for your business.</p>
+    <div class="search-box"><svg class="icon"><use href="#icon-search"/></svg><input id="searchInput" placeholder="Search projects or services…"></div>
     <div class="chip-row" id="chipRow">
       <button class="chip active" data-cat="All">All</button>
-      <button class="chip" data-cat="Restaurants">Restaurants</button>
-      <button class="chip" data-cat="Beauty">Beauty</button>
-      <button class="chip" data-cat="Home Services">Home Services</button>
-      <button class="chip" data-cat="Retail">Retail</button>
-      <button class="chip" data-cat="Fitness">Fitness</button>
+      <button class="chip" data-cat="Websites">Websites</button>
+      <button class="chip" data-cat="Templates">Templates</button>
+      <button class="chip" data-cat="Posters">Posters</button>
+      <button class="chip" data-cat="Reviews">Reviews</button>
+      <button class="chip" data-cat="Branding">Branding</button>
     </div>
   </div>
   <div class="business-grid" id="businessGrid"></div>
@@ -446,51 +477,45 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
   <div class="dash-shell">
     <aside class="dash-sidebar">
       <div class="dash-biz">
-        <div class="biz-avatar lg">M</div>
+        <div class="biz-avatar lg">N</div>
         <div>
-          <strong>Maple &amp; Vine</strong>
-          <div class="dash-biz-meta"><span class="biz-cat-tag">Restaurant</span><span class="demo-tag">Demo</span></div>
+          <strong>NeonNest Studio</strong>
+          <div class="dash-biz-meta"><span class="biz-cat-tag">Application portal</span><span class="demo-tag">Open</span></div>
         </div>
       </div>
       <nav class="dash-nav">
-        <button class="dash-nav-link active" data-dash="overview"><svg class="icon"><use href="#icon-overview"/></svg>Overview</button>
-        <button class="dash-nav-link" data-dash="website"><svg class="icon"><use href="#icon-website"/></svg>Website</button>
-        <button class="dash-nav-link" data-dash="content"><svg class="icon"><use href="#icon-content"/></svg>Content</button>
-        <button class="dash-nav-link" data-dash="ads"><svg class="icon"><use href="#icon-ads"/></svg>Advertising</button>
-        <button class="dash-nav-link" data-dash="reviews"><svg class="icon"><use href="#icon-reviews"/></svg>Reviews</button>
+        <button class="dash-nav-link active" data-dash="overview"><svg class="icon"><use href="#icon-overview"/></svg>Apply for a project</button>
+        <div class="portal-note">Tell us what you are building. We will review your brief and contact you with the next steps.</div>
       </nav>
     </aside>
     <div class="dash-main">
 
       <div class="dash-tab" data-dash-tab="overview">
-        <div class="dash-head"><h2>Overview</h2><p>Here's how Maple &amp; Vine is doing this month.</p></div>
-        <div class="stat-grid">
-          <div class="stat-card"><span class="stat-label">Profile views</span><span class="stat-value">4,812</span><span class="stat-delta up">↑ 12% vs last month</span></div>
-          <div class="stat-card"><span class="stat-label">Average rating</span><span class="stat-value">4.8 ★</span><span class="stat-delta up">↑ 0.1</span></div>
-          <div class="stat-card"><span class="stat-label">Active campaigns</span><span class="stat-value">2</span><span class="stat-delta">Running now</span></div>
-          <div class="stat-card"><span class="stat-label">Website visitors</span><span class="stat-value">1,236</span><span class="stat-delta up">↑ 8%</span></div>
-        </div>
-        <div class="chart-card">
-          <h4>Profile views — last 6 months</h4>
-          <svg viewBox="0 0 560 190" class="bar-chart" id="overviewChart"></svg>
-        </div>
-        <div class="recent-reviews-card">
-          <h4>Recent reviews</h4>
-          <div id="recentReviewsMini"></div>
-          <button class="text-link" style="margin-top:10px;" onclick="switchDash('reviews')">View all reviews</button>
-        </div>
+        <div class="dash-head"><h2>Apply for a project</h2><p>Share a few details and NeonNest will get back to you with a tailored plan.</p></div>
+        <form class="application-form" id="applicationForm">
+          <div class="application-intro"><span class="application-kicker">01 / Your brief</span><h3>Let’s make your business impossible to ignore.</h3><p>Applications usually take less than two minutes. There is no commitment and no payment required.</p></div>
+          <div class="application-grid">
+            <label><span>Your name</span><input id="appName" required placeholder="Alex Morgan"></label>
+            <label><span>Business name</span><input id="appBusiness" required placeholder="Your business name"></label>
+            <label><span>Email address</span><input id="appEmail" type="email" required placeholder="you@business.com"></label>
+            <label><span>What do you need?</span><select id="appService" required><option value="">Choose a service</option><option>Website design</option><option>Review writing</option><option>Social media templates</option><option>Poster design</option><option>Branding package</option><option>Multiple services</option></select></label>
+          </div>
+          <label><span>Tell us about your project</span><textarea id="appDetails" required placeholder="What are you launching, changing, or trying to improve?"></textarea></label>
+          <div class="application-footer"><span>We reply within 1–2 business days.</span><button class="btn btn-solid btn-lg" type="submit">Send my application</button></div>
+          <div class="application-success" id="applicationSuccess" hidden><strong>Application received.</strong> Thanks, <span id="successName"></span>. We’ll be in touch soon with your next bright step.</div>
+        </form>
       </div>
 
       <div class="dash-tab" data-dash-tab="website" hidden>
-        <div class="dash-head"><h2>Website</h2><p>Edit your site and see it update instantly.</p></div>
+        <div class="dash-head"><h2>Website concept</h2><p>Edit your homepage direction and preview it instantly.</p></div>
         <div class="builder-shell">
           <div class="builder-panel">
             <div class="builder-section">
               <div class="builder-section-head"><label class="switch"><input type="checkbox" checked disabled><span></span></label><strong>Hero</strong></div>
               <label class="field-label">Headline</label>
-              <input id="siteHeadline" value="Maple &amp; Vine" oninput="updatePreview()">
+              <input id="siteHeadline" value="Your bold new website" oninput="updatePreview()">
               <label class="field-label">Subheading</label>
-              <input id="siteSubheading" value="Farm-to-table bistro, open Tue–Sun" oninput="updatePreview()">
+              <input id="siteSubheading" value="A polished digital home for your next big move" oninput="updatePreview()">
             </div>
             <div class="builder-section"><div class="builder-section-head"><label class="switch"><input type="checkbox" checked data-target="previewAbout" onchange="toggleBlock(this)"><span></span></label><strong>About</strong></div></div>
             <div class="builder-section"><div class="builder-section-head"><label class="switch"><input type="checkbox" checked data-target="previewServices" onchange="toggleBlock(this)"><span></span></label><strong>Services / Menu</strong></div></div>
@@ -500,11 +525,11 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
           <div class="builder-preview">
             <div class="browser-chrome"><span></span><span></span><span></span></div>
             <div class="site-preview">
-              <div class="site-preview-nav">Maple &amp; Vine</div>
+              <div class="site-preview-nav">Your brand</div>
               <div class="site-preview-hero">
-                <h2 id="previewHeadline">Maple &amp; Vine</h2>
-                <p id="previewSubheading">Farm-to-table bistro, open Tue–Sun</p>
-                <button>Reserve a table</button>
+                <h2 id="previewHeadline">Your bold new website</h2>
+                <p id="previewSubheading">A polished digital home for your next big move</p>
+                <button>Start a conversation</button>
               </div>
               <div class="site-preview-row">
                 <div class="site-preview-block" id="previewAbout"></div>
@@ -518,29 +543,29 @@ button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,
       </div>
 
       <div class="dash-tab" data-dash-tab="content" hidden>
-        <div class="dash-head-row"><div><h2>Content</h2><p>Plan what goes out, and where.</p></div><button class="btn btn-solid btn-sm" onclick="toggleForm('newPostForm')">+ New post</button></div>
+        <div class="dash-head-row"><div><h2>Content kit</h2><p>Plan the posts, templates, and launch moments your audience will see.</p></div><button class="btn btn-solid btn-sm" onclick="toggleForm('newPostForm')">+ New asset</button></div>
         <div class="new-post-form" id="newPostForm" hidden>
-          <input id="postTitle" placeholder="Post title">
+          <input id="postTitle" placeholder="Asset or post title">
           <select id="postPlatform"><option>Website</option><option>Social</option><option>Email</option></select>
           <input id="postDate" type="date">
-          <button class="btn btn-solid btn-sm" onclick="addPost()">Add to calendar</button>
+          <button class="btn btn-solid btn-sm" onclick="addPost()">Add to kit</button>
         </div>
         <div class="post-list" id="postList"></div>
       </div>
 
       <div class="dash-tab" data-dash-tab="ads" hidden>
-        <div class="dash-head-row"><div><h2>Advertising</h2><p>Run and track campaigns without an agency.</p></div><button class="btn btn-solid btn-sm" onclick="toggleForm('newCampaignForm')">+ New campaign</button></div>
+        <div class="dash-head-row"><div><h2>Launch campaigns</h2><p>Keep your posters, social drops, and launch ideas moving.</p></div><button class="btn btn-solid btn-sm" onclick="toggleForm('newCampaignForm')">+ New launch</button></div>
         <div class="new-campaign-form" id="newCampaignForm" hidden>
-          <input id="campName" placeholder="Campaign name">
+          <input id="campName" placeholder="Launch name">
           <select id="campPlatform"><option>Search</option><option>Social</option><option>Display</option></select>
           <input id="campBudget" type="number" min="5" placeholder="Daily budget ($)">
-          <button class="btn btn-solid btn-sm" onclick="addCampaign()">Launch</button>
+          <button class="btn btn-solid btn-sm" onclick="addCampaign()">Add launch</button>
         </div>
         <div class="campaign-grid" id="campaignGrid"></div>
       </div>
 
       <div class="dash-tab" data-dash-tab="reviews" hidden>
-        <div class="dash-head"><h2>Reviews</h2><p>Every review from LocalLoop, in one inbox.</p></div>
+        <div class="dash-head"><h2>Review writing</h2><p>Shape thoughtful customer-facing responses that sound like your brand.</p></div>
         <div class="chip-row" id="dashReviewFilter" style="margin-bottom:18px;">
           <button class="chip active" data-min="0" data-max="5">All</button>
           <button class="chip" data-min="5" data-max="5">5★</button>
@@ -571,12 +596,12 @@ document.querySelectorAll('[data-nav]').forEach(function(el){ el.addEventListene
 
 // ---- Data ----
 var businesses = [
-  {id:1,name:"Maple & Vine",category:"Restaurant",tag:"Restaurants",rating:4.8,reviews:212,blurb:"Farm-to-table bistro with a seasonal menu.",dist:[78,16,4,1,1]},
-  {id:2,name:"Bright Edge Salon",category:"Hair Salon",tag:"Beauty",rating:4.6,reviews:134,blurb:"Full-service salon specializing in color.",dist:[68,20,8,3,1]},
-  {id:3,name:"Coastline Plumbing",category:"Home Services",tag:"Home Services",rating:4.9,reviews:301,blurb:"Licensed plumbers with same-day service.",dist:[85,11,3,1,0]},
-  {id:4,name:"Papershelf Books",category:"Bookstore",tag:"Retail",rating:4.7,reviews:98,blurb:"Independent bookstore with a coffee nook.",dist:[74,18,6,1,1]},
-  {id:5,name:"Ironclad Fitness",category:"Gym",tag:"Fitness",rating:4.5,reviews:176,blurb:"Boutique strength & conditioning studio.",dist:[62,24,9,3,2]},
-  {id:6,name:"Lucia's Bakery",category:"Bakery",tag:"Restaurants",rating:4.9,reviews:264,blurb:"Sourdough, pastries, and custom cakes.",dist:[83,13,3,1,0]}
+  {id:1,name:"GlowHaus Beauty",category:"Brand launch",tag:"Branding",rating:4.9,reviews:18,blurb:"A vivid identity system for a beauty studio ready to glow.",dist:[90,8,2,0,0]},
+  {id:2,name:"Northstar Fitness",category:"Poster campaign",tag:"Posters",rating:4.8,reviews:14,blurb:"High-energy posters and social assets for a new studio launch.",dist:[84,12,3,1,0]},
+  {id:3,name:"Bloom & Co.",category:"Website project",tag:"Websites",rating:5,reviews:22,blurb:"A warm, conversion-focused website for a modern florist.",dist:[94,6,0,0,0]},
+  {id:4,name:"Solis Coffee",category:"Template kit",tag:"Templates",rating:4.7,reviews:11,blurb:"A flexible content system for daily specials and seasonal drops.",dist:[78,16,5,1,0]},
+  {id:5,name:"Morrow Skin",category:"Review writing",tag:"Reviews",rating:4.9,reviews:16,blurb:"A clear, human response voice for a growing skincare brand.",dist:[88,10,2,0,0]},
+  {id:6,name:"Orbit Interiors",category:"Website project",tag:"Websites",rating:4.8,reviews:19,blurb:"A tactile portfolio site that makes every room feel considered.",dist:[86,11,2,1,0]}
 ];
 
 var reviewsData = {
@@ -622,7 +647,7 @@ function renderBusinessGrid(){
     return (currentCat==='All' || b.tag===currentCat) &&
       (b.name.toLowerCase().indexOf(q)>-1 || b.category.toLowerCase().indexOf(q)>-1);
   });
-  grid.innerHTML = filtered.length ? filtered.map(businessCardHTML).join('') : '<p class="empty">No businesses match your search.</p>';
+  grid.innerHTML = filtered.length ? filtered.map(businessCardHTML).join('') : '<p class="empty">No projects match your search.</p>';
 }
 function businessCardHTML(b){
   return '<div class="biz-card">' +
@@ -676,6 +701,7 @@ function drawBarChart(){
   var data=[2100,2600,3050,2900,3600,4812];
   var labels=['Apr','May','Jun','Jul','Aug','Sep'];
   var svg=document.getElementById('overviewChart');
+  if(!svg) return;
   var max=Math.max.apply(null,data), w=560,h=190,padB=22,barW=52,gap=(w-barW*data.length)/(data.length+1);
   var html='';
   data.forEach(function(v,i){
@@ -687,9 +713,12 @@ function drawBarChart(){
 }
 drawBarChart();
 
-document.getElementById('recentReviewsMini').innerHTML = reviewsData[1].slice(0,2).map(function(r){
-  return '<div class="mini-review"><span class="stars small">'+stars(r.rating)+'</span> <strong>'+r.name+'</strong> — '+r.text+'</div>';
-}).join('');
+var recentReviewsMini = document.getElementById('recentReviewsMini');
+if(recentReviewsMini){
+  recentReviewsMini.innerHTML = reviewsData[1].slice(0,2).map(function(r){
+    return '<div class="mini-review"><span class="stars small">'+stars(r.rating)+'</span> <strong>'+r.name+'</strong> — '+r.text+'</div>';
+  }).join('');
+}
 
 // ---- Website builder ----
 function updatePreview(){
@@ -803,6 +832,15 @@ document.querySelectorAll('#dashReviewFilter .chip').forEach(function(chip){
   });
 });
 renderDashReviews();
+
+// ---- Client application ----
+document.getElementById('applicationForm').addEventListener('submit', function(event){
+  event.preventDefault();
+  document.getElementById('successName').textContent = document.getElementById('appName').value.trim();
+  document.getElementById('applicationSuccess').hidden = false;
+  this.querySelector('button[type="submit"]').textContent = 'Application sent';
+  this.querySelector('button[type="submit"]').disabled = true;
+});
 
 // ---- Init ----
 showView('home');

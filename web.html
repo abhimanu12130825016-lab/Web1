@@ -1,1 +1,811 @@
-<title>My Website</title>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LocalLoop — Concept Prototype</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;}
+[hidden]{display:none!important;}
+:root{
+  --ink:#17332C;
+  --ink-soft:#4C5F57;
+  --ink-faint:#7C8B84;
+  --paper:#EEF1E6;
+  --surface:#F8F9F2;
+  --line:#D7DCC9;
+  --gold:#C68A1F;
+  --gold-deep:#9C6B14;
+  --gold-tint:#F1E3C4;
+  --star:#D9A017;
+  --r-sm:5px;
+  --r-md:6px;
+  --shadow-hero:0 14px 28px rgba(23,51,44,.18);
+  --font-d:'Big Shoulders Display',sans-serif;
+  --font-b:'Archivo',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:var(--font-b);color:var(--ink);background:var(--paper);line-height:1.55;-webkit-font-smoothing:antialiased;}
+h1,h2{font-family:var(--font-d);font-weight:800;line-height:.98;margin:0 0 .4em;color:var(--ink);letter-spacing:.002em;}
+h3,h4{font-family:var(--font-b);font-weight:700;line-height:1.25;margin:0 0 .5em;color:var(--ink);}
+p{margin:0 0 1em;color:var(--ink-soft);max-width:64ch;}
+a{color:inherit;}
+button{font-family:inherit;cursor:pointer;}
+input,select,textarea{font-family:inherit;font-size:14px;color:var(--ink);}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--gold-deep);outline-offset:2px;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
+.icon{width:20px;height:20px;flex-shrink:0;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 28px;}
+.section{padding:80px 0;}
+.section-head{max-width:600px;margin:0 0 40px;}
+.section-head h2{font-size:38px;}
+.section-sub{margin:0;}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:999px;border:2px solid transparent;padding:11px 22px;font-size:14px;font-weight:600;transition:background .15s ease,color .15s ease,border-color .15s ease;}
+.btn-solid{background:var(--gold);color:var(--ink);}
+.btn-solid:hover{background:var(--gold-deep);color:#fff;}
+.btn-outline{background:transparent;border-color:var(--ink);color:var(--ink);}
+.btn-outline:hover{background:var(--ink);color:#fff;}
+.btn-ghost{background:transparent;border-color:transparent;color:var(--ink);}
+.btn-lg{padding:14px 26px;font-size:15px;}
+.btn-sm{padding:8px 16px;font-size:13px;}
+.text-link{background:none;border:none;color:var(--gold-deep);font-weight:700;font-size:14px;padding:0;text-decoration:underline;text-underline-offset:3px;}
+.text-link--light{color:var(--gold);}
+
+/* topbar */
+.topbar{position:sticky;top:0;z-index:40;background:rgba(238,241,230,.94);backdrop-filter:blur(6px);border-bottom:2px solid var(--ink);}
+.topbar-inner{max-width:1120px;margin:0 auto;padding:14px 28px;display:flex;align-items:center;gap:24px;}
+.brand{display:flex;align-items:center;gap:8px;background:none;border:none;font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--ink);padding:0;}
+.brand .icon{color:var(--gold-deep);}
+.main-nav{display:flex;gap:2px;margin-left:4px;}
+.nav-link{background:none;border:none;padding:8px 14px;border-radius:4px;font-size:14px;font-weight:600;color:var(--ink-soft);}
+.nav-link.active,.nav-link:hover{background:var(--gold-tint);color:var(--ink);}
+.topbar-actions{margin-left:auto;display:flex;gap:10px;align-items:center;}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;padding:64px 0 48px;}
+.hero h1{font-size:clamp(38px,5.4vw,60px);}
+.hero .lede{font-size:17px;max-width:46ch;}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
+.placard-stack{position:relative;height:300px;max-width:420px;}
+.mini-placard{position:absolute;width:min(250px,74vw);background:var(--surface);border:2px solid var(--ink);border-radius:var(--r-md);padding:16px 18px;display:flex;flex-direction:column;gap:5px;}
+.mini-placard strong{font-weight:700;font-size:17px;}
+.mp-cat{font-size:11px;color:var(--ink-faint);}
+.mp-stars{font-size:13px;color:var(--star);font-weight:700;}
+.mp-1{top:0;left:8%;transform:rotate(-4deg);z-index:1;}
+.mp-2{top:66px;left:0;transform:rotate(3deg);z-index:2;background:var(--paper);}
+.mp-3{top:140px;left:14%;transform:rotate(-2deg);z-index:3;box-shadow:var(--shadow-hero);}
+
+/* audience */
+.audience{display:grid;grid-template-columns:1fr 1fr;gap:22px;}
+.audience-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:34px;}
+.audience-card--dark{background:var(--ink);border-color:var(--ink);color:#fff;}
+.audience-card--dark h3{color:#fff;}
+.audience-icon{width:44px;height:44px;border-radius:var(--r-sm);background:var(--gold-tint);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.audience-icon .icon{color:var(--gold-deep);}
+.audience-card--dark .audience-icon{background:rgba(255,255,255,.12);}
+.audience-card--dark .audience-icon .icon{color:var(--gold);}
+.audience-card ul{margin:0 0 18px;padding-left:20px;color:var(--ink-soft);}
+.audience-card--dark ul{color:#CFD8D1;}
+.audience-card li{margin-bottom:7px;}
+
+/* pillars */
+.pillar-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+.pillar-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:24px;}
+.pillar-card .icon{width:24px;height:24px;color:var(--gold-deep);margin-bottom:12px;}
+.pillar-card h3{font-size:16px;}
+.pillar-card p{font-size:14px;margin:0;}
+
+/* steps */
+.step-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:26px;}
+.step-ghost{display:block;font-family:var(--font-d);font-weight:800;font-size:60px;color:var(--gold-tint);line-height:1;margin-bottom:-8px;}
+.step-list h3{font-size:16px;position:relative;}
+.step-list p{font-size:14px;}
+
+/* testimonials */
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;}
+.testimonial{border-left:3px solid var(--gold);padding:2px 0 2px 20px;}
+.testimonial p{font-size:16px;color:var(--ink);margin:0 0 10px;}
+.testimonial span{font-size:13px;color:var(--ink-soft);font-weight:700;}
+
+/* pricing */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start;}
+.price-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:30px;}
+.price-card--featured{background:var(--ink);border-color:var(--ink);color:#fff;}
+.price-card--featured h3,.price-card--featured .price{color:#fff;}
+.price-card--featured .price span{color:#AEBBB3;}
+.price-card--featured ul{color:#CFD8D1;}
+.price-card--featured li{border-top-color:rgba(255,255,255,.14);}
+.featured-label{display:inline-block;color:var(--gold);font-size:12px;font-weight:700;margin-bottom:10px;}
+.price{font-family:var(--font-d);font-weight:800;font-size:42px;margin:6px 0 18px;color:var(--ink);}
+.price span{font-size:14px;font-weight:400;font-family:var(--font-b);color:var(--ink-faint);}
+.price-card ul{list-style:none;padding:0;margin:0 0 22px;color:var(--ink-soft);font-size:14px;}
+.price-card li{padding:8px 0;border-top:1px solid var(--line);}
+.price-card li:first-child{border-top:none;}
+
+/* footer */
+.footer{border-top:2px solid var(--ink);padding:48px 0 26px;}
+.footer-inner{display:flex;justify-content:space-between;gap:36px;flex-wrap:wrap;margin-bottom:28px;}
+.footer-brand{font-family:var(--font-d);font-size:22px;font-weight:800;max-width:260px;}
+.footer-brand p{font-size:13px;font-family:var(--font-b);margin-top:8px;}
+.footer-cols{display:flex;gap:48px;flex-wrap:wrap;}
+.footer-cols h4{font-size:13px;color:var(--ink-soft);margin:0 0 12px;}
+.footer-cols a{display:block;font-size:14px;color:var(--ink-soft);text-decoration:none;margin-bottom:9px;}
+.footer-note{font-size:12px;color:var(--ink-faint);border-top:1px solid var(--line);padding-top:18px;}
+
+/* explore */
+.explore-header{padding:52px 0 30px;}
+.search-box{position:relative;max-width:440px;margin:22px 0 16px;}
+.search-box .icon{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--ink-faint);}
+.search-box input{width:100%;padding:12px 16px 12px 42px;border-radius:999px;border:2px solid var(--ink);background:var(--surface);font-size:14px;}
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{border:2px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 15px;font-size:13px;font-weight:600;color:var(--ink-soft);}
+.chip.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.business-grid{max-width:1120px;margin:0 auto;padding:0 28px 88px;display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px;}
+.biz-card{background:var(--surface);border:2px solid var(--ink);border-radius:var(--r-md);padding:20px;display:flex;flex-direction:column;gap:10px;}
+.biz-card-top{display:flex;gap:12px;align-items:center;}
+.biz-avatar{width:42px;height:42px;border-radius:var(--r-sm);background:var(--ink);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--font-d);font-weight:800;font-size:18px;flex-shrink:0;}
+.biz-avatar.lg{width:50px;height:50px;font-size:20px;}
+.biz-card h3{font-size:16px;margin:0;}
+.biz-cat{font-size:12px;color:var(--ink-faint);margin:2px 0 0;}
+.biz-blurb{font-size:13px;margin:0;flex-grow:1;}
+.biz-rating{display:flex;align-items:center;gap:6px;font-size:13px;}
+.stars{color:var(--star);letter-spacing:1px;}
+.stars.small{font-size:12px;}
+.rating-num{font-weight:700;}
+.rating-count{color:var(--ink-faint);}
+.empty{grid-column:1/-1;color:var(--ink-faint);padding:30px 0;}
+
+/* modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(23,51,44,.55);display:flex;align-items:center;justify-content:center;z-index:60;padding:20px;}
+.modal{background:var(--surface);border:2px solid var(--ink);border-radius:var(--r-md);max-width:520px;width:100%;max-height:82vh;overflow-y:auto;padding:30px;position:relative;}
+.modal-close{position:absolute;top:14px;right:14px;background:var(--paper);border:2px solid var(--ink);border-radius:50%;width:30px;height:30px;font-size:17px;line-height:1;color:var(--ink);}
+.modal-rating-summary{display:flex;gap:22px;align-items:center;background:var(--paper);border-radius:var(--r-sm);padding:16px;margin:16px 0;}
+.big-rating{font-family:var(--font-d);font-weight:800;font-size:32px;text-align:center;flex-shrink:0;}
+.big-rating .stars{display:block;font-size:14px;margin:3px 0;}
+.big-rating span:last-child{display:block;font-size:11px;font-family:var(--font-b);font-weight:400;color:var(--ink-faint);}
+.rating-bars{flex-grow:1;}
+.rbar-row{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--ink-faint);margin-bottom:4px;}
+.rbar{flex-grow:1;height:6px;background:var(--line);border-radius:4px;overflow:hidden;}
+.rbar-fill{height:100%;background:var(--star);}
+.review-item{padding:14px 0;border-top:1px solid var(--line);}
+.review-item:first-child{border-top:none;padding-top:0;}
+.review-item-head{display:flex;align-items:center;gap:10px;margin-bottom:5px;flex-wrap:wrap;}
+.review-date{font-size:12px;color:var(--ink-faint);margin-left:auto;}
+.review-item p{font-size:14px;margin:0;}
+
+/* dashboard */
+.dash-shell{display:grid;grid-template-columns:230px 1fr;min-height:620px;}
+.dash-sidebar{background:var(--ink);color:#fff;padding:22px 14px;}
+.dash-biz{display:flex;align-items:center;gap:10px;padding:0 8px 18px;border-bottom:1px solid rgba(255,255,255,.14);margin-bottom:14px;}
+.dash-biz strong{display:block;font-size:14px;}
+.dash-biz-meta{display:flex;gap:6px;margin-top:5px;}
+.biz-cat-tag,.demo-tag{font-size:10px;padding:2px 7px;border-radius:4px;font-weight:700;}
+.biz-cat-tag{background:rgba(255,255,255,.12);color:#CFD8D1;}
+.demo-tag{background:var(--gold);color:var(--ink);}
+.dash-nav{display:flex;flex-direction:column;gap:2px;}
+.dash-nav-link{display:flex;align-items:center;gap:10px;background:none;border:none;color:#CFD8D1;padding:10px 12px;border-radius:4px;font-size:14px;text-align:left;}
+.dash-nav-link .icon{width:18px;height:18px;}
+.dash-nav-link.active,.dash-nav-link:hover{background:rgba(255,255,255,.1);color:#fff;}
+.dash-main{padding:38px 42px;background:var(--paper);}
+.dash-head{margin-bottom:26px;}
+.dash-head h2{font-size:28px;}
+.dash-head-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px;gap:16px;flex-wrap:wrap;}
+.dash-head-row h2{font-size:28px;margin-bottom:2px;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+.stat-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:16px;}
+.stat-label{display:block;font-size:12px;color:var(--ink-faint);margin-bottom:8px;}
+.stat-value{display:block;font-family:var(--font-d);font-weight:800;font-size:26px;}
+.stat-delta{display:block;font-size:12px;color:var(--ink-faint);margin-top:4px;}
+.stat-delta.up{color:var(--gold-deep);font-weight:700;}
+
+.chart-card,.recent-reviews-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:20px;margin-bottom:18px;}
+.chart-card h4,.recent-reviews-card h4{font-size:14px;margin-bottom:12px;}
+.bar-chart{width:100%;height:auto;}
+.bar{fill:var(--gold);}
+.bar-label{fill:var(--ink-faint);font-size:11px;font-family:var(--font-b);}
+.mini-review{font-size:13px;padding:8px 0;border-top:1px solid var(--line);color:var(--ink-soft);}
+.mini-review:first-child{border-top:none;}
+.mini-review strong{color:var(--ink);}
+
+.builder-shell{display:grid;grid-template-columns:290px 1fr;gap:18px;align-items:start;}
+.builder-panel{display:flex;flex-direction:column;gap:10px;}
+.builder-section{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:14px 16px;}
+.builder-section-head{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.field-label{display:block;font-size:11px;color:var(--ink-faint);margin:10px 0 4px;}
+.builder-section input:not([type]){width:100%;padding:9px 11px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:13px;background:#fff;}
+.switch{position:relative;display:inline-block;width:34px;height:19px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;}
+.switch span{position:absolute;inset:0;background:var(--line);border-radius:999px;transition:.15s;}
+.switch span::before{content:'';position:absolute;width:15px;height:15px;left:2px;top:2px;background:#fff;border-radius:50%;transition:.15s;}
+.switch input:checked + span{background:var(--gold-deep);}
+.switch input:checked + span::before{transform:translateX(15px);}
+.builder-preview{background:var(--surface);border:2px solid var(--ink);border-radius:var(--r-md);overflow:hidden;}
+.browser-chrome{display:flex;gap:6px;padding:11px 14px;border-bottom:2px solid var(--ink);}
+.browser-chrome span{width:9px;height:9px;border-radius:50%;background:var(--line);}
+.site-preview-nav{padding:13px 22px;font-weight:700;border-bottom:1px solid var(--line);}
+.site-preview-hero{padding:36px 22px;text-align:center;background:var(--paper);}
+.site-preview-hero h2{font-size:22px;}
+.site-preview-hero button{margin-top:8px;background:var(--gold);color:var(--ink);border:none;border-radius:999px;padding:9px 18px;font-size:13px;font-weight:700;}
+.site-preview-row{display:flex;gap:10px;padding:18px 22px;}
+.site-preview-block{flex:1;height:64px;background:var(--surface);border:1px dashed var(--line);border-radius:var(--r-sm);}
+.site-preview-contact{padding:13px 22px;border-top:1px solid var(--line);font-size:12px;color:var(--ink-faint);text-align:center;}
+
+.new-post-form,.new-campaign-form{display:flex;gap:10px;flex-wrap:wrap;background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:14px;margin-bottom:18px;}
+.new-post-form input,.new-post-form select,.new-campaign-form input,.new-campaign-form select{padding:9px 12px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:13px;flex:1;min-width:140px;background:#fff;}
+.post-list{display:flex;flex-direction:column;gap:1px;background:var(--line);border-radius:var(--r-md);overflow:hidden;border:2px solid var(--line);}
+.post-row{display:grid;grid-template-columns:90px 1fr 120px 100px;gap:12px;align-items:center;background:var(--surface);padding:13px 16px;font-size:13px;}
+.post-title{font-weight:600;}
+.post-date{color:var(--ink-faint);}
+.tag{display:inline-block;padding:3px 9px;border-radius:4px;font-size:11px;font-weight:700;width:fit-content;}
+.tag-platform{background:var(--line);color:var(--ink-soft);}
+.tag-live{background:var(--gold-tint);color:var(--gold-deep);}
+.tag-muted{background:var(--line);color:var(--ink-faint);}
+
+.campaign-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;}
+.campaign-card{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:16px;}
+.campaign-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:8px;}
+.status-toggle-btn{border:none;border-radius:999px;padding:4px 12px;font-size:11px;font-weight:700;margin-bottom:12px;}
+.campaign-metrics{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.campaign-metrics div{background:var(--paper);border-radius:var(--r-sm);padding:8px 10px;}
+.campaign-metrics span{display:block;font-size:11px;color:var(--ink-faint);}
+.campaign-metrics strong{font-size:14px;}
+
+.dash-review{background:var(--surface);border:2px solid var(--line);border-radius:var(--r-md);padding:16px;margin-bottom:10px;}
+.business-reply{margin-top:10px;background:var(--paper);border-radius:var(--r-sm);padding:10px 12px;font-size:13px;color:var(--ink-soft);}
+.reply-box{margin-top:10px;display:flex;flex-direction:column;gap:8px;}
+.reply-box textarea{width:100%;min-height:60px;padding:10px;border:1px solid var(--line);border-radius:var(--r-sm);font-size:13px;resize:vertical;}
+
+@media (max-width:960px){
+  .pillar-grid{grid-template-columns:repeat(2,1fr);}
+  .step-list{grid-template-columns:repeat(2,1fr);}
+  .testimonials,.price-grid{grid-template-columns:1fr;}
+  .stat-grid{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width:880px){
+  .hero{grid-template-columns:1fr;padding-top:36px;}
+  .hero-visual{order:-1;}
+  .placard-stack{height:250px;margin-bottom:10px;}
+  .audience{grid-template-columns:1fr;}
+  .builder-shell{grid-template-columns:1fr;}
+  .dash-shell{grid-template-columns:1fr;}
+  .dash-sidebar{display:block;padding:16px;}
+  .dash-biz{border-bottom:none;margin-bottom:10px;padding-bottom:0;}
+  .dash-nav{flex-direction:row;overflow-x:auto;gap:6px;}
+  .dash-nav-link{white-space:nowrap;}
+  .dash-main{padding:26px 18px;}
+}
+@media (max-width:720px){
+  .main-nav{order:3;width:100%;overflow-x:auto;border-top:1px solid var(--line);padding-top:10px;margin-top:10px;}
+  .topbar-inner{flex-wrap:wrap;}
+  .topbar-actions .btn-ghost{display:none;}
+  .post-row{grid-template-columns:1fr;gap:6px;}
+  .footer-inner{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<svg style="display:none" aria-hidden="true">
+  <symbol id="icon-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="10" r="6.5"/><line x1="19.5" y1="19.5" x2="14.8" y2="14.8"/></symbol>
+  <symbol id="icon-website" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><line x1="3" y1="8.5" x2="21" y2="8.5"/><line x1="9" y1="20" x2="15" y2="20"/><line x1="12" y1="17" x2="12" y2="20"/></symbol>
+  <symbol id="icon-content" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l5 5v13H6z"/><path d="M15 3v5h5"/><line x1="9" y1="13" x2="17" y2="13"/><line x1="9" y1="17" x2="14" y2="17"/></symbol>
+  <symbol id="icon-ads" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4h3l5 4V6l-5 4H3z"/><path d="M14 9a4 4 0 0 1 0 6"/><path d="M17.2 6.8a7.5 7.5 0 0 1 0 10.4"/></symbol>
+  <symbol id="icon-reviews" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H8l-4 4z"/></symbol>
+  <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20.5c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
+  <symbol id="icon-overview" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></symbol>
+  <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.4 7-12.2A7 7 0 0 0 5 8.8C5 13.6 12 21 12 21z"/><circle cx="12" cy="8.8" r="2.4"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <button class="brand" data-nav="home"><svg class="icon"><use href="#icon-pin"/></svg>LocalLoop</button>
+    <nav class="main-nav">
+      <button class="nav-link" data-nav="home">Home</button>
+      <button class="nav-link" data-nav="explore">Explore</button>
+      <button class="nav-link" data-nav="dashboard">Business Dashboard</button>
+    </nav>
+    <div class="topbar-actions">
+      <button class="btn btn-ghost" data-nav="dashboard">Log in</button>
+      <button class="btn btn-solid" data-nav="dashboard">Get started</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="view" data-view="home">
+  <div class="wrap hero">
+    <div class="hero-copy">
+      <h1>Get found.<br>Get reviewed.<br>Get chosen.</h1>
+      <p class="lede">LocalLoop is where customers discover and review local businesses — and where owners build their website, plan content, run ads, and manage their reputation, all from one login.</p>
+      <div class="hero-actions">
+        <button class="btn btn-solid btn-lg" data-nav="explore">Explore businesses</button>
+        <button class="btn btn-outline btn-lg" data-nav="dashboard">Go to your dashboard</button>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="placard-stack">
+        <div class="mini-placard mp-1"><span class="mp-cat">Bakery</span><strong>Lucia's Bakery</strong><span class="mp-stars">★★★★★ 4.9</span></div>
+        <div class="mini-placard mp-2"><span class="mp-cat">Home Services</span><strong>Coastline Plumbing</strong><span class="mp-stars">★★★★★ 4.9</span></div>
+        <div class="mini-placard mp-3"><span class="mp-cat">Restaurant</span><strong>Maple &amp; Vine</strong><span class="mp-stars">★★★★★ 4.8</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="audience">
+      <div class="audience-card">
+        <div class="audience-icon"><svg class="icon"><use href="#icon-user"/></svg></div>
+        <h3>For customers</h3>
+        <ul>
+          <li>Discover businesses worth your time</li>
+          <li>Read real, verified reviews</li>
+          <li>Compare ratings at a glance</li>
+        </ul>
+        <button class="text-link" data-nav="explore">Start exploring</button>
+      </div>
+      <div class="audience-card audience-card--dark">
+        <div class="audience-icon"><svg class="icon"><use href="#icon-website"/></svg></div>
+        <h3>For business owners</h3>
+        <ul>
+          <li>Build and manage your website</li>
+          <li>Plan content and launch ad campaigns</li>
+          <li>Track and reply to every review</li>
+        </ul>
+        <button class="text-link text-link--light" data-nav="dashboard">Open the dashboard</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Everything under one roof</h2>
+        <p class="section-sub">Four tools, one login — no more juggling agencies and apps.</p>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card"><svg class="icon"><use href="#icon-website"/></svg><h3>Website Builder</h3><p>Launch a clean, mobile-ready site in an afternoon. No code needed.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-content"/></svg><h3>Content Studio</h3><p>Plan posts across your site, social, and email from one calendar.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-ads"/></svg><h3>Ad Manager</h3><p>Launch and track campaigns without needing a marketing team.</p></div>
+        <div class="pillar-card"><svg class="icon"><use href="#icon-reviews"/></svg><h3>Reputation &amp; Reviews</h3><p>See every review in one inbox and reply straight from LocalLoop.</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head"><h2>How it works</h2></div>
+      <ol class="step-list">
+        <li><span class="step-ghost">1</span><h3>Claim your business</h3><p>Set up your profile in minutes.</p></li>
+        <li><span class="step-ghost">2</span><h3>Build your site</h3><p>Pick a layout, add your details, publish.</p></li>
+        <li><span class="step-ghost">3</span><h3>Get discovered</h3><p>Show up when customers search and browse.</p></li>
+        <li><span class="step-ghost">4</span><h3>Grow with data</h3><p>Use reviews, content and ads to keep momentum.</p></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="testimonials">
+        <div class="testimonial"><p>I used to log into four different tools before lunch. Now it's one dashboard, and I actually have time to cut hair.</p><span>Elena Ruiz, Bright Edge Salon</span></div>
+        <div class="testimonial"><p>Our review replies used to sit for weeks. Now I answer from my phone between jobs.</p><span>Marcus Owusu, Coastline Plumbing</span></div>
+        <div class="testimonial"><p>I built our whole site in an evening without calling a developer.</p><span>Lucia Ferrante, Lucia's Bakery</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0;">
+    <div class="wrap">
+      <div class="section-head"><h2>Simple, transparent plans</h2></div>
+      <div class="price-grid">
+        <div class="price-card"><h3>Starter</h3><p class="price">$0<span>/mo</span></p><ul><li>Business profile &amp; reviews</li><li>Basic website (1 page)</li><li>Community support</li></ul><button class="btn btn-outline" data-nav="dashboard">Get started</button></div>
+        <div class="price-card price-card--featured"><span class="featured-label">Most popular</span><h3>Growth</h3><p class="price">$29<span>/mo</span></p><ul><li>Full website builder</li><li>Content calendar</li><li>Review inbox &amp; replies</li><li>1 ad campaign</li></ul><button class="btn btn-solid" data-nav="dashboard">Get started</button></div>
+        <div class="price-card"><h3>Pro</h3><p class="price">$79<span>/mo</span></p><ul><li>Everything in Growth</li><li>Unlimited campaigns</li><li>Priority support</li><li>Multi-location</li></ul><button class="btn btn-outline" data-nav="dashboard">Get started</button></div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footer-inner">
+        <div class="footer-brand">LocalLoop<p>The all-in-one home for local business.</p></div>
+        <div class="footer-cols">
+          <div><h4>Product</h4><a href="#">Website Builder</a><a href="#">Content Studio</a><a href="#">Ad Manager</a><a href="#">Reviews</a></div>
+          <div><h4>Company</h4><a href="#">About</a><a href="#">Careers</a><a href="#">Contact</a></div>
+          <div><h4>Resources</h4><a href="#">Help Center</a><a href="#">Guides</a><a href="#">Pricing</a></div>
+        </div>
+      </div>
+      <p class="footer-note">Concept prototype with sample data, built to show the idea — not a live service.</p>
+    </div>
+  </footer>
+</section>
+
+<section class="view" data-view="explore" hidden>
+  <div class="explore-header wrap">
+    <h2>Discover local businesses</h2>
+    <p>Real reviews from real customers.</p>
+    <div class="search-box"><svg class="icon"><use href="#icon-search"/></svg><input id="searchInput" placeholder="Search businesses or categories…"></div>
+    <div class="chip-row" id="chipRow">
+      <button class="chip active" data-cat="All">All</button>
+      <button class="chip" data-cat="Restaurants">Restaurants</button>
+      <button class="chip" data-cat="Beauty">Beauty</button>
+      <button class="chip" data-cat="Home Services">Home Services</button>
+      <button class="chip" data-cat="Retail">Retail</button>
+      <button class="chip" data-cat="Fitness">Fitness</button>
+    </div>
+  </div>
+  <div class="business-grid" id="businessGrid"></div>
+</section>
+
+<section class="view" data-view="dashboard" hidden>
+  <div class="dash-shell">
+    <aside class="dash-sidebar">
+      <div class="dash-biz">
+        <div class="biz-avatar lg">M</div>
+        <div>
+          <strong>Maple &amp; Vine</strong>
+          <div class="dash-biz-meta"><span class="biz-cat-tag">Restaurant</span><span class="demo-tag">Demo</span></div>
+        </div>
+      </div>
+      <nav class="dash-nav">
+        <button class="dash-nav-link active" data-dash="overview"><svg class="icon"><use href="#icon-overview"/></svg>Overview</button>
+        <button class="dash-nav-link" data-dash="website"><svg class="icon"><use href="#icon-website"/></svg>Website</button>
+        <button class="dash-nav-link" data-dash="content"><svg class="icon"><use href="#icon-content"/></svg>Content</button>
+        <button class="dash-nav-link" data-dash="ads"><svg class="icon"><use href="#icon-ads"/></svg>Advertising</button>
+        <button class="dash-nav-link" data-dash="reviews"><svg class="icon"><use href="#icon-reviews"/></svg>Reviews</button>
+      </nav>
+    </aside>
+    <div class="dash-main">
+
+      <div class="dash-tab" data-dash-tab="overview">
+        <div class="dash-head"><h2>Overview</h2><p>Here's how Maple &amp; Vine is doing this month.</p></div>
+        <div class="stat-grid">
+          <div class="stat-card"><span class="stat-label">Profile views</span><span class="stat-value">4,812</span><span class="stat-delta up">↑ 12% vs last month</span></div>
+          <div class="stat-card"><span class="stat-label">Average rating</span><span class="stat-value">4.8 ★</span><span class="stat-delta up">↑ 0.1</span></div>
+          <div class="stat-card"><span class="stat-label">Active campaigns</span><span class="stat-value">2</span><span class="stat-delta">Running now</span></div>
+          <div class="stat-card"><span class="stat-label">Website visitors</span><span class="stat-value">1,236</span><span class="stat-delta up">↑ 8%</span></div>
+        </div>
+        <div class="chart-card">
+          <h4>Profile views — last 6 months</h4>
+          <svg viewBox="0 0 560 190" class="bar-chart" id="overviewChart"></svg>
+        </div>
+        <div class="recent-reviews-card">
+          <h4>Recent reviews</h4>
+          <div id="recentReviewsMini"></div>
+          <button class="text-link" style="margin-top:10px;" onclick="switchDash('reviews')">View all reviews</button>
+        </div>
+      </div>
+
+      <div class="dash-tab" data-dash-tab="website" hidden>
+        <div class="dash-head"><h2>Website</h2><p>Edit your site and see it update instantly.</p></div>
+        <div class="builder-shell">
+          <div class="builder-panel">
+            <div class="builder-section">
+              <div class="builder-section-head"><label class="switch"><input type="checkbox" checked disabled><span></span></label><strong>Hero</strong></div>
+              <label class="field-label">Headline</label>
+              <input id="siteHeadline" value="Maple &amp; Vine" oninput="updatePreview()">
+              <label class="field-label">Subheading</label>
+              <input id="siteSubheading" value="Farm-to-table bistro, open Tue–Sun" oninput="updatePreview()">
+            </div>
+            <div class="builder-section"><div class="builder-section-head"><label class="switch"><input type="checkbox" checked data-target="previewAbout" onchange="toggleBlock(this)"><span></span></label><strong>About</strong></div></div>
+            <div class="builder-section"><div class="builder-section-head"><label class="switch"><input type="checkbox" checked data-target="previewServices" onchange="toggleBlock(this)"><span></span></label><strong>Services / Menu</strong></div></div>
+            <div class="builder-section"><div class="builder-section-head"><label class="switch"><input type="checkbox" checked data-target="previewGallery" onchange="toggleBlock(this)"><span></span></label><strong>Gallery</strong></div></div>
+            <div class="builder-section"><div class="builder-section-head"><label class="switch"><input type="checkbox" checked data-target="previewContact" onchange="toggleBlock(this)"><span></span></label><strong>Contact</strong></div></div>
+          </div>
+          <div class="builder-preview">
+            <div class="browser-chrome"><span></span><span></span><span></span></div>
+            <div class="site-preview">
+              <div class="site-preview-nav">Maple &amp; Vine</div>
+              <div class="site-preview-hero">
+                <h2 id="previewHeadline">Maple &amp; Vine</h2>
+                <p id="previewSubheading">Farm-to-table bistro, open Tue–Sun</p>
+                <button>Reserve a table</button>
+              </div>
+              <div class="site-preview-row">
+                <div class="site-preview-block" id="previewAbout"></div>
+                <div class="site-preview-block" id="previewServices"></div>
+                <div class="site-preview-block" id="previewGallery"></div>
+              </div>
+              <div class="site-preview-contact" id="previewContact">123 Harbor St · open Tue–Sun · (555) 019-2231</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-tab" data-dash-tab="content" hidden>
+        <div class="dash-head-row"><div><h2>Content</h2><p>Plan what goes out, and where.</p></div><button class="btn btn-solid btn-sm" onclick="toggleForm('newPostForm')">+ New post</button></div>
+        <div class="new-post-form" id="newPostForm" hidden>
+          <input id="postTitle" placeholder="Post title">
+          <select id="postPlatform"><option>Website</option><option>Social</option><option>Email</option></select>
+          <input id="postDate" type="date">
+          <button class="btn btn-solid btn-sm" onclick="addPost()">Add to calendar</button>
+        </div>
+        <div class="post-list" id="postList"></div>
+      </div>
+
+      <div class="dash-tab" data-dash-tab="ads" hidden>
+        <div class="dash-head-row"><div><h2>Advertising</h2><p>Run and track campaigns without an agency.</p></div><button class="btn btn-solid btn-sm" onclick="toggleForm('newCampaignForm')">+ New campaign</button></div>
+        <div class="new-campaign-form" id="newCampaignForm" hidden>
+          <input id="campName" placeholder="Campaign name">
+          <select id="campPlatform"><option>Search</option><option>Social</option><option>Display</option></select>
+          <input id="campBudget" type="number" min="5" placeholder="Daily budget ($)">
+          <button class="btn btn-solid btn-sm" onclick="addCampaign()">Launch</button>
+        </div>
+        <div class="campaign-grid" id="campaignGrid"></div>
+      </div>
+
+      <div class="dash-tab" data-dash-tab="reviews" hidden>
+        <div class="dash-head"><h2>Reviews</h2><p>Every review from LocalLoop, in one inbox.</p></div>
+        <div class="chip-row" id="dashReviewFilter" style="margin-bottom:18px;">
+          <button class="chip active" data-min="0" data-max="5">All</button>
+          <button class="chip" data-min="5" data-max="5">5★</button>
+          <button class="chip" data-min="4" data-max="4">4★</button>
+          <button class="chip" data-min="0" data-max="3">3★ &amp; under</button>
+        </div>
+        <div id="dashReviewList"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<div class="modal-backdrop" id="modalBackdrop" hidden onclick="if(event.target===this)closeModal()">
+  <div class="modal" id="reviewModal"></div>
+</div>
+
+<script>
+// ---- Navigation ----
+function showView(name){
+  document.querySelectorAll('.view').forEach(function(v){ v.hidden = v.dataset.view !== name; });
+  document.querySelectorAll('.nav-link').forEach(function(b){ b.classList.toggle('active', b.dataset.nav===name); });
+  window.scrollTo(0,0);
+}
+document.querySelectorAll('[data-nav]').forEach(function(el){ el.addEventListener('click', function(){ showView(el.dataset.nav); }); });
+
+// ---- Data ----
+var businesses = [
+  {id:1,name:"Maple & Vine",category:"Restaurant",tag:"Restaurants",rating:4.8,reviews:212,blurb:"Farm-to-table bistro with a seasonal menu.",dist:[78,16,4,1,1]},
+  {id:2,name:"Bright Edge Salon",category:"Hair Salon",tag:"Beauty",rating:4.6,reviews:134,blurb:"Full-service salon specializing in color.",dist:[68,20,8,3,1]},
+  {id:3,name:"Coastline Plumbing",category:"Home Services",tag:"Home Services",rating:4.9,reviews:301,blurb:"Licensed plumbers with same-day service.",dist:[85,11,3,1,0]},
+  {id:4,name:"Papershelf Books",category:"Bookstore",tag:"Retail",rating:4.7,reviews:98,blurb:"Independent bookstore with a coffee nook.",dist:[74,18,6,1,1]},
+  {id:5,name:"Ironclad Fitness",category:"Gym",tag:"Fitness",rating:4.5,reviews:176,blurb:"Boutique strength & conditioning studio.",dist:[62,24,9,3,2]},
+  {id:6,name:"Lucia's Bakery",category:"Bakery",tag:"Restaurants",rating:4.9,reviews:264,blurb:"Sourdough, pastries, and custom cakes.",dist:[83,13,3,1,0]}
+];
+
+var reviewsData = {
+  1:[
+    {name:"Priya S.",rating:5,date:"2 weeks ago",text:"Best patio in town, and the seasonal menu changes just enough to keep us coming back."},
+    {name:"Tom H.",rating:5,date:"1 month ago",text:"Booking was easy and the staff remembered our anniversary from last time."},
+    {name:"Grace L.",rating:4,date:"1 month ago",text:"Food was excellent, just wish they took walk-ins on weekends."},
+    {name:"Daniel R.",rating:5,date:"2 months ago",text:"The sourdough starter alone is worth the trip."}
+  ],
+  2:[
+    {name:"Alicia M.",rating:5,date:"3 weeks ago",text:"Finally found a colorist who listens instead of just doing their own thing."},
+    {name:"Jordan K.",rating:4,date:"1 month ago",text:"Great cut, a bit of a wait even with an appointment."}
+  ],
+  3:[
+    {name:"Ben O.",rating:5,date:"1 week ago",text:"Same-day fix for a burst pipe on a Sunday. Can't ask for more."},
+    {name:"Renee F.",rating:5,date:"3 weeks ago",text:"Upfront pricing before any work started, no surprises on the bill."}
+  ],
+  4:[
+    {name:"Marcus T.",rating:5,date:"2 weeks ago",text:"The staff picks shelf has never once let me down."},
+    {name:"Ines V.",rating:4,date:"1 month ago",text:"Cozy spot — the coffee nook makes it easy to lose an afternoon."}
+  ],
+  5:[
+    {name:"Sam D.",rating:4,date:"2 weeks ago",text:"Small classes, so the coaching actually feels personal."},
+    {name:"Priya N.",rating:5,date:"1 month ago",text:"Best strength program I've done, and the schedule fits a 9-to-5."}
+  ],
+  6:[
+    {name:"Owen P.",rating:5,date:"1 week ago",text:"Custom cake came out better than the reference photo we sent."},
+    {name:"Hana S.",rating:5,date:"3 weeks ago",text:"Sourdough sells out by 10am for a reason."}
+  ]
+};
+
+function stars(rating){
+  var full = Math.round(rating);
+  return '★'.repeat(full) + '☆'.repeat(5-full);
+}
+
+// ---- Explore ----
+var currentCat = 'All';
+function renderBusinessGrid(){
+  var q = document.getElementById('searchInput').value.toLowerCase();
+  var grid = document.getElementById('businessGrid');
+  var filtered = businesses.filter(function(b){
+    return (currentCat==='All' || b.tag===currentCat) &&
+      (b.name.toLowerCase().indexOf(q)>-1 || b.category.toLowerCase().indexOf(q)>-1);
+  });
+  grid.innerHTML = filtered.length ? filtered.map(businessCardHTML).join('') : '<p class="empty">No businesses match your search.</p>';
+}
+function businessCardHTML(b){
+  return '<div class="biz-card">' +
+    '<div class="biz-card-top"><div class="biz-avatar">'+b.name.charAt(0)+'</div>' +
+    '<div><h3>'+b.name+'</h3><p class="biz-cat">'+b.category+'</p></div></div>' +
+    '<p class="biz-blurb">'+b.blurb+'</p>' +
+    '<div class="biz-rating"><span class="stars">'+stars(b.rating)+'</span><span class="rating-num">'+b.rating+'</span><span class="rating-count">('+b.reviews+')</span></div>' +
+    '<button class="btn btn-outline btn-sm" onclick="openReviews('+b.id+')">See reviews</button></div>';
+}
+document.getElementById('searchInput').addEventListener('input', renderBusinessGrid);
+document.querySelectorAll('#chipRow .chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('#chipRow .chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+    currentCat = chip.dataset.cat;
+    renderBusinessGrid();
+  });
+});
+renderBusinessGrid();
+
+// ---- Review modal ----
+function openReviews(id){
+  var b = businesses.find(function(x){ return x.id===id; });
+  var revs = reviewsData[id] || [];
+  var order = [5,4,3,2,1];
+  var barsHtml = order.map(function(n,i){
+    return '<div class="rbar-row"><span>'+n+'★</span><div class="rbar"><div class="rbar-fill" style="width:'+b.dist[i]+'%"></div></div></div>';
+  }).join('');
+  var revsHtml = revs.map(function(r){
+    return '<div class="review-item"><div class="review-item-head"><strong>'+r.name+'</strong><span class="stars small">'+stars(r.rating)+'</span><span class="review-date">'+r.date+'</span></div><p>'+r.text+'</p></div>';
+  }).join('');
+  document.getElementById('reviewModal').innerHTML =
+    '<button class="modal-close" onclick="closeModal()">×</button>' +
+    '<h2>'+b.name+'</h2><p class="biz-cat">'+b.category+'</p>' +
+    '<div class="modal-rating-summary"><div class="big-rating">'+b.rating+'<span class="stars">'+stars(b.rating)+'</span><span>'+b.reviews+' reviews</span></div>' +
+    '<div class="rating-bars">'+barsHtml+'</div></div>' +
+    '<div class="review-list">'+revsHtml+'</div>';
+  document.getElementById('modalBackdrop').hidden = false;
+}
+function closeModal(){ document.getElementById('modalBackdrop').hidden = true; }
+
+// ---- Dashboard nav ----
+function switchDash(name){
+  document.querySelectorAll('.dash-nav-link').forEach(function(b){ b.classList.toggle('active', b.dataset.dash===name); });
+  document.querySelectorAll('.dash-tab').forEach(function(t){ t.hidden = t.dataset.dashTab !== name; });
+}
+document.querySelectorAll('.dash-nav-link').forEach(function(btn){ btn.addEventListener('click', function(){ switchDash(btn.dataset.dash); }); });
+
+// ---- Overview chart ----
+function drawBarChart(){
+  var data=[2100,2600,3050,2900,3600,4812];
+  var labels=['Apr','May','Jun','Jul','Aug','Sep'];
+  var svg=document.getElementById('overviewChart');
+  var max=Math.max.apply(null,data), w=560,h=190,padB=22,barW=52,gap=(w-barW*data.length)/(data.length+1);
+  var html='';
+  data.forEach(function(v,i){
+    var bh=(v/max)*(h-padB-14);
+    var x=gap+i*(barW+gap), y=h-padB-bh;
+    html+='<rect x="'+x+'" y="'+y+'" width="'+barW+'" height="'+bh+'" rx="4" class="bar"></rect><text x="'+(x+barW/2)+'" y="'+(h-5)+'" class="bar-label" text-anchor="middle">'+labels[i]+'</text>';
+  });
+  svg.innerHTML=html;
+}
+drawBarChart();
+
+document.getElementById('recentReviewsMini').innerHTML = reviewsData[1].slice(0,2).map(function(r){
+  return '<div class="mini-review"><span class="stars small">'+stars(r.rating)+'</span> <strong>'+r.name+'</strong> — '+r.text+'</div>';
+}).join('');
+
+// ---- Website builder ----
+function updatePreview(){
+  document.getElementById('previewHeadline').textContent = document.getElementById('siteHeadline').value;
+  document.getElementById('previewSubheading').textContent = document.getElementById('siteSubheading').value;
+}
+function toggleBlock(cb){
+  var el = document.getElementById(cb.dataset.target);
+  if(el) el.style.display = cb.checked ? '' : 'none';
+}
+
+// ---- Content ----
+var posts=[
+  {title:"Fall menu launch",platform:"Website",status:"Published",date:"Sep 2, 2026"},
+  {title:"Weekend brunch specials",platform:"Social",status:"Scheduled",date:"Sep 18, 2026"},
+  {title:"Harvest dinner event newsletter",platform:"Email",status:"Draft",date:"Sep 25, 2026"}
+];
+function statusTagClass(status){
+  return (status==='Draft'||status==='Paused') ? 'tag tag-muted' : 'tag tag-live';
+}
+function renderPosts(){
+  document.getElementById('postList').innerHTML = posts.map(function(p){
+    return '<div class="post-row"><span class="tag tag-platform">'+p.platform+'</span>' +
+      '<span class="post-title">'+p.title+'</span>' +
+      '<span class="post-date">'+p.date+'</span>' +
+      '<span class="'+statusTagClass(p.status)+'">'+p.status+'</span></div>';
+  }).join('');
+}
+function toggleForm(id){ var f=document.getElementById(id); f.hidden=!f.hidden; }
+function addPost(){
+  var title=document.getElementById('postTitle').value.trim();
+  if(!title) return;
+  var platform=document.getElementById('postPlatform').value;
+  var dv=document.getElementById('postDate').value;
+  var date = dv ? new Date(dv+'T00:00:00').toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}) : 'Unscheduled';
+  posts.unshift({title:title,platform:platform,status:'Scheduled',date:date});
+  renderPosts();
+  document.getElementById('postTitle').value='';
+  document.getElementById('postDate').value='';
+  document.getElementById('newPostForm').hidden=true;
+}
+renderPosts();
+
+// ---- Advertising ----
+var campaigns=[
+  {name:"Fall Weekend Push",platform:"Social",status:"Active",budget:15,impressions:18400,clicks:612},
+  {name:"Brunch Near Me",platform:"Search",status:"Active",budget:10,impressions:9200,clicks:340}
+];
+function renderCampaigns(){
+  document.getElementById('campaignGrid').innerHTML = campaigns.map(function(c,i){
+    var cls = c.status==='Active' ? 'tag-live' : 'tag-muted';
+    var ctr = (c.clicks/c.impressions*100).toFixed(1);
+    return '<div class="campaign-card"><div class="campaign-head"><strong>'+c.name+'</strong><span class="tag tag-platform">'+c.platform+'</span></div>' +
+      '<button class="status-toggle-btn '+cls+'" onclick="toggleCampaignStatus('+i+')">'+c.status+'</button>' +
+      '<div class="campaign-metrics">' +
+      '<div><span>Budget</span><strong>$'+c.budget+'/day</strong></div>' +
+      '<div><span>Impressions</span><strong>'+c.impressions.toLocaleString()+'</strong></div>' +
+      '<div><span>Clicks</span><strong>'+c.clicks.toLocaleString()+'</strong></div>' +
+      '<div><span>CTR</span><strong>'+ctr+'%</strong></div>' +
+      '</div></div>';
+  }).join('');
+}
+function toggleCampaignStatus(i){ campaigns[i].status = campaigns[i].status==='Active'?'Paused':'Active'; renderCampaigns(); }
+function addCampaign(){
+  var name=document.getElementById('campName').value.trim();
+  if(!name) return;
+  var platform=document.getElementById('campPlatform').value;
+  var budget=Number(document.getElementById('campBudget').value)||10;
+  var impressions=Math.round(budget*550+Math.random()*800);
+  var clicks=Math.round(impressions*(0.02+Math.random()*0.02));
+  campaigns.unshift({name:name,platform:platform,status:'Active',budget:budget,impressions:impressions,clicks:clicks});
+  renderCampaigns();
+  document.getElementById('campName').value='';
+  document.getElementById('campBudget').value='';
+  document.getElementById('newCampaignForm').hidden=true;
+}
+renderCampaigns();
+
+// ---- Reviews (dashboard) ----
+var myReviews = reviewsData[1].map(function(r,i){
+  return {name:r.name,rating:r.rating,date:r.date,text:r.text,id:i,replied:false,reply:''};
+});
+var dashFilterMin=0, dashFilterMax=5;
+function renderDashReviews(){
+  var list = myReviews.filter(function(r){ return r.rating>=dashFilterMin && r.rating<=dashFilterMax; });
+  document.getElementById('dashReviewList').innerHTML = list.map(function(r){
+    var replyPart = r.replied
+      ? '<div class="business-reply"><strong>Your reply:</strong> '+r.reply+'</div>'
+      : '<button class="text-link" onclick="toggleReplyBox('+r.id+')">Reply</button>' +
+        '<div class="reply-box" id="replyBox'+r.id+'" hidden>' +
+        '<textarea id="replyText'+r.id+'" placeholder="Write a reply…"></textarea>' +
+        '<button class="btn btn-solid btn-sm" onclick="submitReply('+r.id+')">Post reply</button></div>';
+    return '<div class="dash-review"><div class="review-item-head"><strong>'+r.name+'</strong><span class="stars small">'+stars(r.rating)+'</span><span class="review-date">'+r.date+'</span></div><p>'+r.text+'</p>'+replyPart+'</div>';
+  }).join('');
+}
+function toggleReplyBox(id){ var b=document.getElementById('replyBox'+id); b.hidden=!b.hidden; }
+function submitReply(id){
+  var t=document.getElementById('replyText'+id).value.trim();
+  if(!t) return;
+  var r=myReviews.find(function(x){ return x.id===id; });
+  r.replied=true; r.reply=t;
+  renderDashReviews();
+}
+document.querySelectorAll('#dashReviewFilter .chip').forEach(function(chip){
+  chip.addEventListener('click', function(){
+    document.querySelectorAll('#dashReviewFilter .chip').forEach(function(c){ c.classList.remove('active'); });
+    chip.classList.add('active');
+    dashFilterMin=Number(chip.dataset.min);
+    dashFilterMax=Number(chip.dataset.max);
+    renderDashReviews();
+  });
+});
+renderDashReviews();
+
+// ---- Init ----
+showView('home');
+</script>
+</body>
+</html>

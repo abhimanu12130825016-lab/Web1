@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEON STUDIOS — Digital worlds for bold businesses</title>
+<title>NEON NEST STUDIOS — Digital worlds for bold businesses</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=Big+Shoulders+Display:wght@700;800&display=swap" rel="stylesheet">
@@ -321,7 +321,7 @@ h1,h2{color:var(--ink);text-shadow:0 4px 0 rgba(255,255,255,.8);}
 }
 </style>
 <style>
-/* Neon Studios: dark neon visual system */
+/* Neon Nest Studios: dark neon visual system */
 :root{--ink:#e5fbff;--ink-soft:#9bc6d1;--ink-faint:#628892;--paper:#061018;--surface:#0c1c29;--line:#173d4c;--gold:#b7ff43;--gold-deep:#5ce1bc;--gold-tint:#12352f;--star:#b7ff43;--cyan:#37e8ff;--pink:#ff4fa3;--violet:#8b7cff;--shadow-hero:0 28px 70px rgba(0,0,0,.45)}
 html{background:#061018}body{color:var(--ink);background:radial-gradient(circle at 15% 10%,rgba(55,232,255,.14),transparent 24%),radial-gradient(circle at 88% 18%,rgba(255,79,163,.12),transparent 23%),linear-gradient(135deg,#061018 0%,#081923 52%,#06131c 100%)}
 body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1px,transparent 1px),linear-gradient(90deg,rgba(55,232,255,.09) 1px,transparent 1px);mask-image:linear-gradient(to bottom,#000,transparent 90%)}h1,h2,h3,h4{color:var(--ink);text-shadow:0 0 26px rgba(55,232,255,.18)}p{color:var(--ink-soft)}
@@ -336,6 +336,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 .about-hero{position:relative;min-height:440px;padding:92px 0 76px;overflow:hidden}.about-hero h2{font-size:clamp(42px,7vw,78px);max-width:720px;margin-top:12px}.about-hero .lede{font-size:18px;max-width:52ch}.about-orbit{position:absolute;right:4%;top:55px;width:310px;height:310px;perspective:800px;transform:rotate(-12deg)}.orbit-core{position:absolute;inset:105px;border:1px solid var(--cyan);border-radius:50%;display:grid;place-items:center;color:var(--gold);font-family:var(--font-d);font-size:56px;background:radial-gradient(circle,#143d48,#071722 70%);box-shadow:0 0 35px rgba(55,232,255,.35),inset 0 0 30px rgba(255,79,163,.24);z-index:2}.orbit-ring{position:absolute;border:1px solid rgba(55,232,255,.7);border-radius:50%;inset:35px;transform:rotateX(65deg) rotateY(12deg);box-shadow:0 0 16px rgba(55,232,255,.18)}.ring-two{inset:12px;transform:rotateX(65deg) rotateY(-28deg);border-color:rgba(255,79,163,.7)}.orbit-dot{position:absolute;width:13px;height:13px;border-radius:50%;background:var(--gold);box-shadow:0 0 16px var(--gold);z-index:3}.dot-one{top:30px;left:106px}.dot-two{right:24px;bottom:84px;background:var(--pink);box-shadow:0 0 16px var(--pink)}.about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.about-panel{min-height:220px;padding:26px;background:linear-gradient(145deg,#0f2d3a,#091b27);border:1px solid rgba(55,232,255,.24);border-radius:18px;box-shadow:0 16px 28px rgba(0,0,0,.25);transition:transform .3s ease,border-color .3s ease}.about-panel:hover{transform:translateY(-10px) rotateX(4deg);border-color:var(--pink)}.about-panel .step-ghost{font-size:48px}.about-values{padding-top:88px}
 @media(max-width:880px){.about-orbit{opacity:.35;right:-80px}.about-hero{min-height:500px}}@media(max-width:720px){.about-grid{grid-template-columns:1fr}.about-hero{padding-top:58px}.about-orbit{width:240px;height:240px;top:250px;right:-32px}.orbit-core{inset:82px;font-size:42px}.orbit-ring{inset:25px}.ring-two{inset:8px}}
 </style>
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <svg style="display:none" aria-hidden="true">
@@ -351,7 +352,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 
 <header class="topbar">
   <div class="topbar-inner">
-    <button class="brand" data-nav="home"><svg class="icon"><use href="#icon-pin"/></svg>Neon Studios</button>
+    <button class="brand" data-nav="home"><svg class="icon"><use href="#icon-pin"/></svg>Neon Nest Studios</button>
     <nav class="main-nav">
       <button class="nav-link" data-nav="home">Home</button>
       <button class="nav-link" data-nav="explore">Our work</button>
@@ -369,8 +370,8 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 <section class="view" data-view="home">
   <div class="wrap hero">
     <div class="hero-copy">
-      <h1>Make your brand<br>impossible to<br>scroll past.</h1>
-      <p class="lede">Neon Studios turns growing businesses into unforgettable brands with review writing, websites, social templates, posters, and digital campaigns that look as good as they perform.</p>
+      <h1 class="hero-title" data-text="Make your brand impossible to scroll past."><span>Make your brand</span><span>impossible to</span><span>scroll past.</span></h1>
+      <p class="lede">Neon Nest Studios turns growing businesses into unforgettable brands with review writing, websites, social templates, posters, and digital campaigns that look as good as they perform.</p>
       <div class="hero-actions">
         <button class="btn btn-solid btn-lg" data-nav="explore">See our work</button>
         <button class="btn btn-outline btn-lg" data-nav="dashboard">Plan my project</button>
@@ -440,7 +441,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
   <div class="section" style="padding-top:0;">
     <div class="wrap">
       <div class="testimonials">
-        <div class="testimonial"><p>Neon Studios made our launch feel ten times bigger than our budget. People finally stopped scrolling.</p><span>Maya Chen, GlowHaus Beauty</span></div>
+        <div class="testimonial"><p>Neon Nest Studios made our launch feel ten times bigger than our budget. People finally stopped scrolling.</p><span>Maya Chen, GlowHaus Beauty</span></div>
         <div class="testimonial"><p>The website, poster, and review responses all sound like the same brilliant brand now.</p><span>Jordan Ellis, Northstar Fitness</span></div>
         <div class="testimonial"><p>We came in with a messy idea and left with a look our customers instantly recognized.</p><span>Rhea Patel, Bloom &amp; Co.</span></div>
       </div>
@@ -461,14 +462,14 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
   <footer class="footer">
     <div class="wrap">
       <div class="footer-inner">
-        <div class="footer-brand">Neon Studios<p>Digital worlds for businesses with somewhere to go.</p></div>
+        <div class="footer-brand">Neon Nest Studios<p>Digital worlds for businesses with somewhere to go.</p></div>
         <div class="footer-cols">
           <div><h4>Services</h4><a href="#">Websites</a><a href="#">Templates</a><a href="#">Posters</a><a href="#">Review writing</a></div>
           <div><h4>Studio</h4><a href="#">About</a><a href="#">Our work</a><a href="#">Contact</a></div>
           <div><h4>Start here</h4><a href="#">Project brief</a><a href="#">Process</a><a href="#">Pricing</a></div>
         </div>
       </div>
-      <p class="footer-note">Neon Studios · A creative partner for digital worlds with somewhere to go.</p>
+      <p class="footer-note">Neon Nest Studios · A creative partner for digital worlds with somewhere to go.</p>
     </div>
   </footer>
 </section>
@@ -477,7 +478,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
   <div class="wrap about-hero">
     <span class="application-kicker">ABOUT THE STUDIO / 2026</span>
     <h2>We build digital space<br>for ideas with gravity.</h2>
-    <p class="lede">Neon Studios is a compact creative studio for founders who want their next chapter to feel unmistakably theirs. Strategy, design, code, and launch energy live in one orbit.</p>
+    <p class="lede">Neon Nest Studios is a compact creative studio for founders who want their next chapter to feel unmistakably theirs. Strategy, design, code, and launch energy live in one orbit.</p>
     <div class="about-orbit" aria-hidden="true"><div class="orbit-core">WS</div><span class="orbit-ring ring-one"></span><span class="orbit-ring ring-two"></span><span class="orbit-dot dot-one"></span><span class="orbit-dot dot-two"></span></div>
   </div>
   <div class="wrap about-grid">
@@ -511,7 +512,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
       <div class="dash-biz">
         <div class="biz-avatar lg">N</div>
         <div>
-          <strong>Neon Studios</strong>
+          <strong>Neon Nest Studios</strong>
           <div class="dash-biz-meta"><span class="biz-cat-tag">Application portal</span><span class="demo-tag">Open</span></div>
         </div>
       </div>
@@ -523,7 +524,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
     <div class="dash-main">
 
       <div class="dash-tab" data-dash-tab="overview">
-        <div class="dash-head"><h2>Apply for a project</h2><p>Share a few details and Neon Studios will get back to you with a tailored plan.</p></div>
+        <div class="dash-head"><h2>Apply for a project</h2><p>Share a few details and Neon Nest Studios will get back to you with a tailored plan.</p></div>
         <form class="application-form" id="applicationForm">
           <div class="application-intro"><span class="application-kicker">01 / Your brief</span><h3>Let’s make your business impossible to ignore.</h3><p>Applications usually take less than two minutes. There is no commitment and no payment required.</p></div>
           <div class="application-grid">
@@ -616,6 +617,8 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 <div class="modal-backdrop" id="modalBackdrop" hidden onclick="if(event.target===this)closeModal()">
   <div class="modal" id="reviewModal"></div>
 </div>
+
+<script src="script.js" defer></script>
 
 <script>
 // ---- Navigation ----

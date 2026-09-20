@@ -513,7 +513,9 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 
       <div class="dash-tab" data-dash-tab="overview">
         <div class="dash-head"><h2>Apply for a project</h2><p>Share a few details and Neon Nest Studios will get back to you with a tailored plan.</p></div>
-        <form class="application-form" id="applicationForm" name="project-application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+        <div class="lotus-envelope">
+          <div class="lotus-petals" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+          <form class="application-form" id="applicationForm" name="project-application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="project-application">
           <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
           <div class="application-intro"><span class="application-kicker">01 / Your brief</span><h3>Let’s make your business impossible to ignore.</h3><p>Applications usually take less than two minutes. There is no commitment and no payment required.</p></div>
@@ -527,7 +529,8 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
           <div class="application-footer"><span>We reply within 1–2 business days.</span><button class="btn btn-solid btn-lg" type="submit">Send my application</button></div>
           <div class="application-success" id="applicationSuccess" hidden><strong>Application received.</strong> Thanks, <span id="successName"></span>. We’ll be in touch soon with your next bright step.</div>
           <div class="application-error" id="applicationError" role="alert" hidden>We could not send your application right now. Please try again in a moment.</div>
-        </form>
+          </form>
+        </div>
       </div>
 
       <div class="dash-tab" data-dash-tab="website" hidden>
@@ -605,6 +608,14 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 function showView(name){
   document.querySelectorAll('.view').forEach(function(v){ v.hidden = v.dataset.view !== name; });
   document.querySelectorAll('.nav-link').forEach(function(b){ b.classList.toggle('active', b.dataset.nav===name); });
+  document.querySelectorAll('.view').forEach(function(v){ v.classList.remove('bloom-entry'); });
+  if(name === 'dashboard'){
+    var dashboard = document.querySelector('[data-view="dashboard"]');
+    if(dashboard){
+      void dashboard.offsetWidth;
+      dashboard.classList.add('bloom-entry');
+    }
+  }
   window.scrollTo(0,0);
 }
 document.querySelectorAll('[data-nav]').forEach(function(el){ el.addEventListener('click', function(){ showView(el.dataset.nav); }); });

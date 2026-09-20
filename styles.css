@@ -51,6 +51,7 @@ html, body { overflow-x: hidden; }
 .brand { white-space: nowrap; }
 .brand::first-letter { color: var(--cyan); }
 .hero-copy .lede { max-width: 48ch; }
+.application-error { margin-top: 18px; padding: 14px 16px; border-radius: 12px; background: #4b1724; color: #ffd6df; border: 1px solid #d86b83; }
 .hero-actions .btn-solid { position: relative; overflow: hidden; }
 .hero-actions .btn-solid::after {
   content: '';

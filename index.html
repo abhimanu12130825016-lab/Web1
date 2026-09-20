@@ -525,17 +525,20 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
 
       <div class="dash-tab" data-dash-tab="overview">
         <div class="dash-head"><h2>Apply for a project</h2><p>Share a few details and Neon Nest Studios will get back to you with a tailored plan.</p></div>
-        <form class="application-form" id="applicationForm">
+        <form class="application-form" id="applicationForm" name="project-application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="project-application">
+          <p hidden><label>Do not fill this out: <input name="bot-field"></label></p>
           <div class="application-intro"><span class="application-kicker">01 / Your brief</span><h3>Let’s make your business impossible to ignore.</h3><p>Applications usually take less than two minutes. There is no commitment and no payment required.</p></div>
           <div class="application-grid">
-            <label><span>Your name</span><input id="appName" required placeholder="Alex Morgan"></label>
-            <label><span>Business name</span><input id="appBusiness" required placeholder="Your business name"></label>
-            <label><span>Email address</span><input id="appEmail" type="email" required placeholder="you@business.com"></label>
-            <label><span>What do you need?</span><select id="appService" required><option value="">Choose a service</option><option>Website design</option><option>Review writing</option><option>Social media templates</option><option>Poster design</option><option>Branding package</option><option>Multiple services</option></select></label>
+            <label><span>Your name</span><input id="appName" name="name" required placeholder="Alex Morgan"></label>
+            <label><span>Business name</span><input id="appBusiness" name="business" required placeholder="Your business name"></label>
+            <label><span>Email address</span><input id="appEmail" name="email" type="email" required placeholder="you@business.com"></label>
+            <label><span>What do you need?</span><select id="appService" name="service" required><option value="">Choose a service</option><option>Website design</option><option>Review writing</option><option>Social media templates</option><option>Poster design</option><option>Branding package</option><option>Multiple services</option></select></label>
           </div>
-          <label><span>Tell us about your project</span><textarea id="appDetails" required placeholder="What are you launching, changing, or trying to improve?"></textarea></label>
+          <label><span>Tell us about your project</span><textarea id="appDetails" name="details" required placeholder="What are you launching, changing, or trying to improve?"></textarea></label>
           <div class="application-footer"><span>We reply within 1–2 business days.</span><button class="btn btn-solid btn-lg" type="submit">Send my application</button></div>
           <div class="application-success" id="applicationSuccess" hidden><strong>Application received.</strong> Thanks, <span id="successName"></span>. We’ll be in touch soon with your next bright step.</div>
+          <div class="application-error" id="applicationError" role="alert" hidden>We could not send your application right now. Please try again in a moment.</div>
         </form>
       </div>
 
@@ -833,9 +836,29 @@ function addCampaign(){
 renderCampaigns();
 
 // ---- Reviews (dashboard) ----
+var reviewStorageKey = 'neonNestStudios.reviewReplies.v1';
+var savedReplies = {};
+try {
+  savedReplies = JSON.parse(localStorage.getItem(reviewStorageKey) || '{}');
+} catch (error) {
+  savedReplies = {};
+}
 var myReviews = reviewsData[1].map(function(r,i){
   return {name:r.name,rating:r.rating,date:r.date,text:r.text,id:i,replied:false,reply:''};
 });
+myReviews.forEach(function(review){
+  if (savedReplies[review.id]) {
+    review.replied = true;
+    review.reply = savedReplies[review.id];
+  }
+});
+function saveReviewReplies(){
+  var replies = {};
+  myReviews.forEach(function(review){
+    if (review.replied && review.reply) replies[review.id] = review.reply;
+  });
+  localStorage.setItem(reviewStorageKey, JSON.stringify(replies));
+}
 var dashFilterMin=0, dashFilterMax=5;
 function renderDashReviews(){
   var list = myReviews.filter(function(r){ return r.rating>=dashFilterMin && r.rating<=dashFilterMax; });
@@ -855,6 +878,7 @@ function submitReply(id){
   if(!t) return;
   var r=myReviews.find(function(x){ return x.id===id; });
   r.replied=true; r.reply=t;
+  saveReviewReplies();
   renderDashReviews();
 }
 document.querySelectorAll('#dashReviewFilter .chip').forEach(function(chip){
@@ -869,12 +893,30 @@ document.querySelectorAll('#dashReviewFilter .chip').forEach(function(chip){
 renderDashReviews();
 
 // ---- Client application ----
-document.getElementById('applicationForm').addEventListener('submit', function(event){
+document.getElementById('applicationForm').addEventListener('submit', async function(event){
   event.preventDefault();
-  document.getElementById('successName').textContent = document.getElementById('appName').value.trim();
-  document.getElementById('applicationSuccess').hidden = false;
-  this.querySelector('button[type="submit"]').textContent = 'Application sent';
-  this.querySelector('button[type="submit"]').disabled = true;
+  var form = this;
+  var submitButton = form.querySelector('button[type="submit"]');
+  var errorMessage = document.getElementById('applicationError');
+  errorMessage.hidden = true;
+  submitButton.disabled = true;
+  submitButton.textContent = 'Sending...';
+
+  try {
+    var response = await fetch('/', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: new URLSearchParams(new FormData(form)).toString()
+    });
+    if (!response.ok) throw new Error('Form submission failed');
+    document.getElementById('successName').textContent = document.getElementById('appName').value.trim();
+    document.getElementById('applicationSuccess').hidden = false;
+    submitButton.textContent = 'Application sent';
+  } catch (error) {
+    errorMessage.hidden = false;
+    submitButton.disabled = false;
+    submitButton.textContent = 'Send my application';
+  }
 });
 
 // ---- Init ----

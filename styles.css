@@ -1,6 +1,12 @@
 /* Neon Nest Studios: a focused editorial visual system. */
 html, body { overflow-x: hidden; }
 
+.view[data-view="home"] { position: relative; isolation: isolate; overflow: hidden; }
+.apogee-bg-video, .apogee-bg-shade { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.apogee-bg-video { z-index: -2; object-fit: cover; opacity: .58; transform: scale(1.06); filter: saturate(1.18) contrast(1.08); animation: apogee-drift 18s ease-in-out infinite alternate; }
+.apogee-bg-shade { z-index: -1; background: linear-gradient(115deg, rgba(7,19,27,.82), rgba(7,19,27,.46) 48%, rgba(7,19,27,.76)); }
+.view[data-view="home"] > *:not(.apogee-bg-video):not(.apogee-bg-shade) { position: relative; z-index: 1; }
+
 :root {
   --ink: #102a2d;
   --ink-soft: #526a69;
@@ -112,6 +118,7 @@ h1, h2 { text-shadow: 3px 4px 0 rgba(255,255,255,.75); }
 @keyframes rise-in { from { opacity: 0; transform: translateY(24px) rotateX(6deg); } to { opacity: 1; transform: translateY(0) rotateX(0); } }
 @keyframes hero-float { 0%, 100% { transform: rotateY(-5deg) rotateX(3deg) translateY(0); } 50% { transform: rotateY(5deg) rotateX(-2deg) translateY(-12px); } }
 @keyframes modal-in { from { opacity: 0; transform: translateY(18px) scale(.94); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes apogee-drift { from { transform: scale(1.06) translate3d(-1%, -1%, 0); } to { transform: scale(1.13) translate3d(1%, 1%, 0); } }
 
 @media (max-width: 880px) {
   .hero { padding-top: 42px; gap: 18px; }
@@ -126,6 +133,7 @@ h1, h2 { text-shadow: 3px 4px 0 rgba(255,255,255,.75); }
   .section { padding-top: 60px; padding-bottom: 60px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-title span, .hero-actions .btn-solid::after { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .apogee-bg-video { animation: none; } }
 
 /* Cyberpunk direction: dark terminal surfaces, signal colors, and precise edges. */
 :root {

@@ -353,3 +353,27 @@ p { color: var(--ink-soft); }
   .lotus-petals span { width: 100px; height: 210px; }
   .bloom-entry .application-form { border-radius: 22px 22px 14px 14px; }
 }
+
+/* Shared business mark used wherever the studio name appears. */
+.brand-logo {
+  width: 38px;
+  height: 38px;
+  flex: 0 0 38px;
+  filter: drop-shadow(0 0 7px rgba(55,232,255,.5));
+}
+.brand span,
+.footer-brand-name,
+.portal-brand-name,
+.hero-brand-lockup { display: inline-flex; align-items: center; }
+.brand { gap: 10px; }
+.hero-brand-lockup { width: min(100%, 330px); margin: 0 0 24px; }
+.hero-full-logo { display: block; width: 100%; height: auto; filter: drop-shadow(0 0 18px rgba(55,232,255,.25)); }
+.footer-brand-name { gap: 10px; font-family: var(--font-d); font-size: 22px; font-weight: 800; }
+.footer-brand-name .brand-logo { width: 42px; height: 42px; flex-basis: 42px; }
+.portal-brand-name { gap: 8px; }
+.portal-brand-name .brand-logo { width: 34px; height: 34px; flex-basis: 34px; }
+
+@media (max-width: 720px) {
+  .hero-brand-lockup { width: min(100%, 270px); margin-bottom: 18px; }
+  .brand-logo { width: 32px; height: 32px; flex-basis: 32px; }
+}

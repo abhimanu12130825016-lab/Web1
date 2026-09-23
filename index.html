@@ -348,11 +348,32 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
   <symbol id="icon-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20.5c0-4.4 3.6-7 8-7s8 2.6 8 7"/></symbol>
   <symbol id="icon-overview" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.5"/><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.5"/><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.5"/></symbol>
   <symbol id="icon-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-7.4 7-12.2A7 7 0 0 0 5 8.8C5 13.6 12 21 12 21z"/><circle cx="12" cy="8.8" r="2.4"/></symbol>
+  <symbol id="neon-nest-mark" viewBox="0 0 240 220">
+    <defs><filter id="logo-glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="4" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+    <path d="M58 92 A62 62 0 0 1 108 30" fill="none" stroke="#19bfff" stroke-width="7" stroke-linecap="round" filter="url(#logo-glow)"/>
+    <path d="M108 30 A62 62 0 0 1 168 92" fill="none" stroke="#8754ff" stroke-width="7" stroke-linecap="round" filter="url(#logo-glow)"/>
+    <path d="M86 113 A45 45 0 0 1 120 57" fill="none" stroke="#22d88b" stroke-width="6" stroke-linecap="round" filter="url(#logo-glow)"/>
+    <path d="M120 57 A45 45 0 0 1 154 113" fill="none" stroke="#ff4b75" stroke-width="6" stroke-linecap="round" filter="url(#logo-glow)"/>
+    <path d="M117 69 l4 13 13 4-13 4-4 13-4-13-13-4 13-4zM86 45 l2 7 7 2-7 2-2 7-2-7-7-2 7-2zM151 48 l2 7 7 2-7 2-2 7-2-7-7-2 7-2zM145 82 l2 7 7 2-7 2-2 7-2-7-7-2 7-2z" fill="#fff" filter="url(#logo-glow)"/>
+    <g fill="none" stroke-linecap="round">
+      <path d="M34 105 Q70 168 122 162 Q175 168 207 105" stroke="#e7edf1" stroke-width="5"/>
+      <path d="M39 98 Q76 151 122 153 Q171 151 202 98" stroke="#b78a11" stroke-width="4"/>
+      <path d="M52 117 Q87 174 122 177 Q162 174 190 117" stroke="#85701c" stroke-width="3"/>
+    </g>
+    <g fill="#718072"><path d="M42 108q-26-5-30-27 25 2 30 27zM55 128q-25 6-36-10 22-8 36 10zM65 145q-19 14-32 2 12-19 32-2zM184 108q26-5 30-27-25 2-30 27zM171 128q25 6 36-10-22-8-36 10zM161 145q19 14 32 2-12-19-32-2z"/></g>
+  </symbol>
+  <symbol id="neon-nest-full-logo" viewBox="0 0 500 600">
+    <rect x="2" y="2" width="496" height="596" rx="48" fill="#0b0e16" stroke="#272d38" stroke-width="3"/>
+    <use href="#neon-nest-mark" x="130" y="38" width="240" height="220"/>
+    <text x="250" y="382" text-anchor="middle" fill="#f7fbff" font-family="Montserrat, sans-serif" font-size="42" font-weight="600" letter-spacing="8" filter="url(#logo-glow)">NEON NEST</text>
+    <text x="250" y="431" text-anchor="middle" fill="#a5adbd" font-family="Montserrat, sans-serif" font-size="24" font-weight="300" letter-spacing="13">STUDIOS</text>
+    <text x="250" y="472" text-anchor="middle" fill="#687d9f" font-family="Montserrat, sans-serif" font-size="11" font-weight="600" letter-spacing="4">POSTERS  •  WEBSITES  •  BUSINESS SOLUTIONS</text>
+  </symbol>
 </svg>
 
 <header class="topbar">
   <div class="topbar-inner">
-    <button class="brand" data-nav="home"><svg class="icon"><use href="#icon-pin"/></svg>Neon Nest Studios</button>
+    <button class="brand" data-nav="home"><svg class="brand-logo" viewBox="0 0 240 220" aria-hidden="true"><use href="#neon-nest-mark"/></svg><span>Neon Nest Studios</span></button>
     <nav class="main-nav">
       <button class="nav-link" data-nav="home">Home</button>
       <button class="nav-link" data-nav="explore">Our work</button>
@@ -372,6 +393,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
   <div class="apogee-bg-shade" aria-hidden="true"></div>
   <div class="wrap hero">
     <div class="hero-copy">
+      <div class="hero-brand-lockup"><svg class="hero-full-logo" viewBox="0 0 500 600" aria-label="Neon Nest Studios logo"><use href="#neon-nest-full-logo"/></svg></div>
       <h1 class="hero-title" data-text="Make your brand impossible to scroll past."><span>Make your brand</span><span>impossible to</span><span>scroll past.</span></h1>
       <p class="lede">Neon Nest Studios turns growing businesses into unforgettable brands with websites, social templates, posters, and digital campaigns that look as good as they perform.</p>
       <div class="hero-actions">
@@ -453,7 +475,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
   <footer class="footer">
     <div class="wrap">
       <div class="footer-inner">
-        <div class="footer-brand">Neon Nest Studios<p>Digital worlds for businesses with somewhere to go.</p></div>
+        <div class="footer-brand"><div class="footer-brand-name"><svg class="brand-logo" viewBox="0 0 240 220" aria-hidden="true"><use href="#neon-nest-mark"/></svg><span>Neon Nest Studios</span></div><p>Digital worlds for businesses with somewhere to go.</p></div>
         <div class="footer-cols">
           <div><h4>Services</h4><a href="#">Websites</a><a href="#">Templates</a><a href="#">Posters</a><a href="#">Campaigns</a></div>
           <div><h4>Studio</h4><a href="#">About</a><a href="#">Our work</a><a href="#">Contact</a></div>
@@ -504,7 +526,7 @@ body::before{opacity:.32;background-image:linear-gradient(rgba(55,232,255,.09) 1
       <div class="dash-biz">
         <div class="biz-avatar lg">N</div>
         <div>
-          <strong>Neon Nest Studios</strong>
+          <strong class="portal-brand-name"><svg class="brand-logo" viewBox="0 0 240 220" aria-hidden="true"><use href="#neon-nest-mark"/></svg><span>Neon Nest Studios</span></strong>
           <div class="dash-biz-meta"><span class="biz-cat-tag">Application portal</span><span class="demo-tag">Open</span></div>
         </div>
       </div>
